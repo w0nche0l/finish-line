@@ -2,12 +2,13 @@
 
 <html>
 <head>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 	<title>My HCI Friends</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<link href = "/css/bootstrap.css" rel = "stylesheet">
-	<link href = "/css/bootstrap-theme.css" rel = "stylesheet">
+	<link href="/css/bootstrap.css" rel="stylesheet">
+	<link href="/css/milestone.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -17,39 +18,36 @@
 </head>
 
 <body>	
-    <nav class = "navbar navbar-default navbar-fixed-top" id="navbar">
-    	<div class = "container">
-			<h1>
-				My Timeline
-			<h1>
-    	</div>
+    <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+		<h1>My Timeline</h1>
     </nav>
 
-    <div class = "container timeline-wrapper">
-    	<div class = "day">
-    		<h2>February 6th 2014</h2>
-    		<div class = "event">
-    			Ate Food
+    <div class="container timeline-wrapper">
+    	<div class="day">
+    		<h2 class="date">February 6th 2014</h2>
+    		<div class="event">
+                <p class="event-complete-time">Completed at 4:30PM</p>
+                <p class="milestone-progress">1/7</p><br />
+    			<p class="event-description">Ate Food</p>
 			</div>
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> f2960d292dc6120cef58df3825f8e24a71e1cfff
-    		<div class = "event">
-    			Read a book
-    		</div>
+    		<div class="event">
+                <p class="event-complete-time">Completed at 5:30PM</p>
+                <p class="milestone-progress">2/7</p><br />
+                <p class="event-description">Read a book</p>
+            </div>
     	</div>
-    	<div class = "day">
-    		<h2>February 7th 2014</h2>
-    		<div class = "event">
-    			Rode a bike
-    		</div>
+    	<div class="day">
+    		<h2 class="date">February 7th 2014</h2>
+    		<div class="event event-incomplete">
+                <p class="event-complete-time">Complete by 5:30PM</p>
+                <p class="milestone-progress">3/7</p><br />
+                <p class="event-description">Rode a bike. Testing longer cells</p>
+            </div>
     	</div>
     </div>
 
-	<script src = "/js/jquery-1.11.0.js"></script>
-	<script src = "/js/bootstrap.js"></script>
+	<script src="/js/jquery-1.11.0.js"></script>
+	<script src="/js/bootstrap.js"></script>
 
 </body>
 </html>

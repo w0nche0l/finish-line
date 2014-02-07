@@ -1,7 +1,70 @@
+/* global styles */
+
 * {
 	font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
-	font-weight: lighter;
 }
+
+/* main app styles */
+
+.navbar {
+	height: 44pt;
+	background-color: #5a5a5a;
+	border: none;
+}
+
+.navbar h1 {
+	margin: 0px auto;
+	font-size: 16pt;
+	margin: 14pt;
+	text-align: center;
+	color: white;
+}
+
+.date {
+	font-size: 10pt;
+	margin-left: 8pt;
+	color: #8f8f8f;
+}
+
+.timeline-wrapper {
+	margin-top: 48pt;
+}
+
+.event {
+	background-color: #347edb;
+	border-radius: 5pt;
+	min-height: 44pt;
+	margin: 8pt 0pt 4pt 0pt;
+}
+
+.event-incomplete {
+	background-color: #aecbf1;
+}
+
+.event .event-description {
+	padding: 8pt 0pt 8pt 8pt;
+	font-size: 14pt;
+	color: white;
+	line-height: 18pt;
+}
+
+.event .event-complete-time {
+	position: absolute;
+	padding: 6pt 0pt 6pt 8pt;
+	float: left;
+	font-size: 10pt;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.event .milestone-progress {
+	position: relative;
+	padding: 6pt 6pt 6pt 8pt;
+	font-size: 10pt;
+	float: right;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+/* login/signup styles */
 
 .login-header {
 	max-width: 300pt;
