@@ -2,8 +2,8 @@
 $(document).ready(function() {
 
 	$('.btn-register').click(loginFunction);
-	$('.btn-cancel').click(cancelFunction);
-	$('btn-add').click(addFunction);
+	$('.btn-cancel a').click(cancelFunction);
+	$('.btn-add a').click(addFunction);
 })
 
 function loginFunction(e){
