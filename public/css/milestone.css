@@ -28,8 +28,7 @@
 }
 
 .form-control {
-	width: 260pt;
-	max-width: 95%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10pt;
@@ -45,8 +44,7 @@
 
 .buttons {
 	margin: 0px auto;
-	width: 260pt;
-	max-width: 95%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
