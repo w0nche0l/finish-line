@@ -1,29 +1,68 @@
 * {
-	font-family: "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+	font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
 }
 
-.header {
-	width: 300px;
+.login-header {
+	max-width: 300pt;
+	text-align: center;
 	margin: 0px auto;
+	margin-top: 40pt;
+	margin-bottom: 40pt;
+	color: #00588b;
 }
 
-.header h1 {
-	text-align: justify;
+.login-header h2 {
+	margin-top: 0px;
+	font-size: 12pt;
 }
 
-/* applies to anything of class "example-class-selector" */
-.example-class-selector {
-	margin-top: 2em;
+#login-box {
+	width: 300pt;
+	max-width: 90%;
+	margin: 0pt auto;
 }
 
-/* applies to any <p> descendants of an element of class "example-class-selector" */
-.example-class-selector p {
-	/* Colors are in hexadecimal: http://www.colorpicker.com/ */	
-	color: #CC00AA;
+.form-control {
+	width: 300pt;
+	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10pt;
+	background-color: #f1f1f1;
+	border: none;
+	-webkit-box-shadow: none;
 }
-.friend{
-	width: 300px;
+
+.form-control:focus {
+	background-color: #dbdbdb;
+	-webkit-box-shadow: none;
 }
-h1, h2, h3, h4, h5 {
-	color: #8382BF;
+
+.buttons {
+	margin: 0px auto;
+	width: 300pt;
+	max-width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn-login {
+	background-color: #86c033;
+	color: white;
+	width: 100%;
+	margin-bottom: 20pt;
+}
+
+.btn-login:hover {
+	color: #ddebc8;
+}
+
+.btn-register {
+	background-color: white;
+	width: 100%;
+	color: #86c033;
+}
+
+.btn-register:active {
+	-webkit-box-shadow: none;
 }

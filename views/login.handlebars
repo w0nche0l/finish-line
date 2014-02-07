@@ -2,12 +2,16 @@
 
 <html>
 <head>
-	<title>My HCI Friends</title>	
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+	<title>Milestone – Log in</title>	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<link href = "/css/bootstrap.css" rel = "stylesheet">
 	<link href = "/css/milestone.css" rel = "stylesheet">
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,20 +23,20 @@
 
   <body>
   	<div class = "container">
-  		<div class="header">
-  			<h1>Milestone</h1>
+  		<div class="login-header">
+  			<h1>milestone</h1>
+  			<h2>reaching your goals, step by step</h2>
   		</div>
 
   		<form id="login-box" role="form" method="get" action="/login">
   			<div class="form-group">
-  				<label for="name">ID:</label>
   				<input type="text" class="form-control" id="name" placeholder="ID" name="name">
-  			</div>
-  			<div class="form-group">
-  				<label for="password">Password:</label>
   				<input type="text" class="form-control" id="password" placeholder="Password" name="password">
+  				<div class="buttons">
+  					<input type="submit" id="submit-btn" class="btn btn-login" value="Login"></input>
+  					<button class="btn btn-register">Don't have an account? Sign up!</button>
+  				</div>
   			</div>
-  			<input type="submit" id="submitBtn" class="btn btn-default" value="Add the friend"></input>
   		</form>
   	</div>
 
