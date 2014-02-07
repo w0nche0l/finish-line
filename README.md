@@ -1,2 +1,2 @@
-finish-line
+milestone
 ===========
