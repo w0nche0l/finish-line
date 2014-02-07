@@ -8,8 +8,9 @@
 
 .navbar {
 	height: 44pt;
-	background-color: #5a5a5a;
+	background-color: #323232;
 	border: none;
+	opacity: 0.9;
 }
 
 .navbar h1 {
