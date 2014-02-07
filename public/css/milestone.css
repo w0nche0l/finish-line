@@ -1,5 +1,6 @@
 * {
 	font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+	font-weight: lighter;
 }
 
 .login-header {
@@ -11,20 +12,24 @@
 	color: #00588b;
 }
 
+.login-header h1, h2 {
+	font-weight: lighter;
+}
+
 .login-header h2 {
 	margin-top: 0px;
 	font-size: 12pt;
 }
 
 #login-box {
-	width: 300pt;
+	width: 260pt;
 	max-width: 90%;
 	margin: 0pt auto;
 }
 
 .form-control {
-	width: 300pt;
-	max-width: 90%;
+	width: 260pt;
+	max-width: 95%;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10pt;
@@ -40,8 +45,8 @@
 
 .buttons {
 	margin: 0px auto;
-	width: 300pt;
-	max-width: 90%;
+	width: 260pt;
+	max-width: 95%;
 	margin-left: auto;
 	margin-right: auto;
 }
