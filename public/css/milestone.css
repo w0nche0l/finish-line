@@ -21,6 +21,22 @@
 	color: white;
 }
 
+#btn-add {
+	float: right;
+	positon: absolute;
+	color: white;
+	font-size: 16pt;
+	margin: 10pt;
+}
+
+#btn-cancel {
+	float: left;
+	position: absolute;
+	color: white;
+	font-size: 16pt;
+	margin: 10pt;
+}
+
 .date {
 	font-size: 10pt;
 	margin-left: 8pt;
@@ -29,9 +45,13 @@
 
 .timeline-wrapper {
 	margin-top: 48pt;
+	max-width: 420pt;
+	margin-left: 0pt auto;
+	margin-right: 0pt auto;
 }
 
 .event {
+	max-width: 500pt;
 	background-color: #347edb;
 	border-radius: 5pt;
 	min-height: 44pt;
@@ -133,3 +153,32 @@
 .btn-register:active {
 	-webkit-box-shadow: none;
 }
+
+/* add goal screen styles */
+
+.form-goal {
+	position: relative;
+	float: left;
+	max-width: 60%;
+}
+
+.form-color {
+	position: relative;
+	float: right;
+	max-width: 38%;
+}
+
+.form-day {
+	float: left;
+	max-width: 20%;
+}
+
+.form-year {
+	float: right;
+	max-width: 30%;
+}
+
+.form-month {
+	max-width: 40%;
+}
+
