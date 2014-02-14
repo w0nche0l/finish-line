@@ -15,26 +15,24 @@
 
 .navbar h1 {
 	margin: 0px auto;
+	margin-top: 14pt;
+	width: 100%;
+	padding: 0pt 10pt 0pt 10pt;
 	font-size: 16pt;
-	margin: 14pt;
 	text-align: center;
 	color: white;
 }
 
 #btn-add {
 	float: right;
-	positon: absolute;
 	color: white;
 	font-size: 16pt;
-	margin: 10pt;
 }
 
 #btn-cancel {
 	float: left;
-	position: absolute;
 	color: white;
 	font-size: 16pt;
-	margin: 10pt;
 }
 
 .date {
@@ -101,6 +99,16 @@
 	padding: 12pt 0pt 0pt 0pt;
 	margin: 0px;
 	text-align: center;
+}
+
+.milestone-list {
+	width: 100%;
+	margin-bottom: 10pt;
+}
+
+.milestone-list .btn {
+	height: 30pt;
+	width: 100%;
 }
 
 /* login/signup styles */
