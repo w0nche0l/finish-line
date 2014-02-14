@@ -4,10 +4,24 @@ $(document).ready(function() {
 	$('.btn-register').click(loginFunction);
 	$('#btn-cancel').click(cancelFunction);
 	$('#btn-add').click(addFunction);
+	$('#submit-btn').click(cancelFunction);
 	console.log('blah');
 	addEvents($('.timeline-wrapper'));
 	addGoals($('#goal-list'));
 })
+
+function addMilestones(e){
+	if(e.length ==0)
+		return;
+	console.log('blah');
+	$.get('/data', gotMilestones);
+}
+
+function gotMilestones(result){
+	var milestoneList = $('.milestone-list');
+	console.log(result);
+	var goals = result['user']['goals'];
+}
 
 function addGoals(e){
 	if(e.length ==0)
@@ -65,10 +79,11 @@ function gotEvents(result){
 		for(var j = 0; j < dayMilestones.length; ++j){
 			if(dayMilestones[j].actualDate > Date.now()){
 				string+= '<div class = "event event-incomplete">';
+				string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
 			}
 			else{
 				string+= '<div class = "event">';
-				string+= '<p class="event-complete-time">' + 'Completed at ' + dayMilestones[j].time + '</p>';
+				string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
 			}
 			string+=
                 '<p class="milestone-progress">' +
