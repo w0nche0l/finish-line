@@ -50,6 +50,7 @@ app.get('/signup' , signUp.view);
 app.get('/add-goal' , addGoal.view);
 app.get('/add-milestone' , addMilestone.view);
 app.get('/help' , help.view);
+app.get('/settings', settings.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
