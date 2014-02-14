@@ -4,32 +4,51 @@ $(document).ready(function() {
 	$('.btn-register').click(loginFunction);
 	$('#btn-cancel').click(cancelFunction);
 	$('#btn-add').click(addFunction);
-	$addEvents($('.timeline-wrapper'));
+	console.log('blah');
+	addEvents($('.timeline-wrapper'));
+
 })
 
 
 function addEvents(e){
 	if(e.length ==0)
 		return;
-	get('/data', gotEvents);
+	console.log('blah');
+	$.get('/data', gotEvents);
 }
 
 function gotEvents(result){
-	var goals = result['user.goals'];
+	var timeline = $('.timeline-wrapper');
+	console.log(result);
+	var goals = result['user']['goals'];
+	console.log(goals);
 	var milestones = new Array();
 	
-	for(int i = 0; i < goals.length; ++i){
+	for(var i = 0; i < goals.length; ++i){
 		var milestonelist = goals[i]['milestones'];
-		for(int j = 0; j <goals.length; ++j){
+		for(var j = 0; j <milestonelist.length; ++j){
 			milestonelist[j].actualDate = new Date(milestonelist[j]['date']);
+			milestonelist[j].goalNum = i;
+			milestonelist[j].milestoneNum = j;
 			milestones.push(milestonelist[j]);
 		}
 	}
 
 	milestones.sort(dateComp);
+	milestones.reverse();
+
+
+	for(var i = 0; i < milestones.length ; ){
+		var date = milestonelist[i].actualDate;
+		var dayMilestones = new Array();
+		while(milestones[i].actualDate == date){
+			dayMilestones.push(milestones[i]);
+			i++;
+		}
+
+	}
+
 	console.log(milestones);
-
-
 }
 
 function dateComp(a,b){
