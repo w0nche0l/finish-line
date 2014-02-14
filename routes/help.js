@@ -1,7 +1,7 @@
 // Get all of our fake login data
-var data = require('../data.json');
+var login = require('../login.json');
 
 exports.view = function(req, res){
-	console.log(data);
-	res.render('help', data);
+	console.log(login);
+	res.render('help', login);
 };

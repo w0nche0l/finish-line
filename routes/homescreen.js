@@ -1,7 +1,7 @@
 // Get all of our user data
-var data = require('../data.json');
+var login = require('../login.json');
 
 exports.view = function(req, res){
-	console.log(data);
-	res.render('homescreen');
+	console.log(login);
+	res.render('homescreen', login);
 };
