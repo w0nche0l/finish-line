@@ -20,6 +20,7 @@ var help = require('./routes/help');
 var settings = require('./routes/settings');
 var data = require('./routes/data');
 var menu = require('./routes/menu');
+var chooseGoal = require('./routes/chooseGoal');
 
 
 // all environments
@@ -55,6 +56,7 @@ app.get('/help' , help.view);
 app.get('/settings', settings.view);
 app.get('/data' , data.getData)
 app.get('/menu', menu.view);
+app.get('/choose-goal', chooseGoal.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
