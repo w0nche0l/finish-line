@@ -17,6 +17,7 @@ function addEvents(e){
 function gotEvents(result){
 	var goals = result['user.goals'];
 	var milestones = new Array();
+	
 	for(int i = 0; i < goals.length; ++i){
 		var milestonelist = goals[i]['milestones'];
 		for(int j = 0; j <goals.length; ++j){
@@ -24,9 +25,16 @@ function gotEvents(result){
 			milestones.push(milestonelist[j]);
 		}
 	}
-	milestones.sort();
+
+	milestones.sort(dateComp);
+	console.log(milestones);
+
+
 }
 
+function dateComp(a,b){
+	return new Date(b.actualDate) - new Date(a.actualDate);
+}
 
 function loginFunction(e){
 	e.preventDefault();
