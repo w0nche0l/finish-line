@@ -18,7 +18,7 @@ var addGoal = require('./routes/add-goal');
 var addMilestone = require('./routes/add-milestone');
 var help = require('./routes/help');
 var settings = require('./routes/settings');
-var data = require('.routes/data');
+var data = require('./routes/data');
 
 
 // all environments

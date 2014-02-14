@@ -4,13 +4,29 @@ $(document).ready(function() {
 	$('.btn-register').click(loginFunction);
 	$('#btn-cancel').click(cancelFunction);
 	$('#btn-add').click(addFunction);
-	addEvents($('.timeline-wrapper'));
+	$addEvents($('.timeline-wrapper'));
 })
 
 
 function addEvents(e){
-	
+	if(e.length ==0)
+		return;
+	get('/data', gotEvents);
 }
+
+function gotEvents(result){
+	var goals = result['user.goals'];
+	var milestones = new Array();
+	for(int i = 0; i < goals.length; ++i){
+		var milestonelist = goals[i]['milestones'];
+		for(int j = 0; j <goals.length; ++j){
+			milestonelist[j].actualDate = new Date(milestonelist[j]['date']);
+			milestones.push(milestonelist[j]);
+		}
+	}
+	milestones.sort();
+}
+
 
 function loginFunction(e){
 	e.preventDefault();
