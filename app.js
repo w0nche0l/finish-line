@@ -51,12 +51,13 @@ app.get('/', login.view);
 app.get('/homescreen' , homescreen.view);
 app.get('/signup' , signUp.view);
 app.get('/add-goal' , addGoal.view);
-app.get('/add-milestone' , addMilestone.view);
+//app.get('/add-milestone' , addMilestone.view);
 app.get('/help' , help.view);
 app.get('/settings', settings.view);
 app.get('/data' , data.getData)
 app.get('/menu', menu.view);
 app.get('/choose-goal', chooseGoal.view);
+app.get('/add-milestone/:goalname', addMilestone.view);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

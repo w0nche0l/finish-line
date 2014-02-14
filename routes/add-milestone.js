@@ -1,7 +1,8 @@
 // Get all of our fake login data
-var login = require('../login.json');
+//var login = require('../login.json');
 
 exports.view = function(req, res){
-	console.log(login);
-	res.render('add-milestone', login);
+	
+	var goalname =req.params.goalname;
+	res.render('add-milestone', {'goalname': goalname});
 };
