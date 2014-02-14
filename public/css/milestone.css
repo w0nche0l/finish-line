@@ -62,6 +62,13 @@
 	margin-right: 0pt auto;
 }
 
+.help-wrapper {
+	margin-top: 60pt;
+	max-width: 420pt;
+	margin-left: 0pt auto;
+	margin-right: 0pt auto;
+}
+
 .event {
 	max-width: 500pt;
 	background-color: #347edb;
