@@ -1,5 +1,4 @@
 {
-
 	"user":{
 		"id" : "username",
 		"password" : "password",
@@ -24,7 +23,7 @@
 					}
 				]
 			},
-			
+
 			{
 				"name" : "Exercise Regularly",
 				"color1": "#8EBA18",
@@ -37,6 +36,5 @@
 				]
 			}
 		]
-
 	}
 }
