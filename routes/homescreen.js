@@ -3,5 +3,6 @@ var login = require('../login.json');
 
 exports.view = function(req, res){
 	console.log(login);
-	res.render('homescreen', login);
+	var goalname =req.params.goalname;
+	res.render('homescreen', {'goalname': goalname});
 };

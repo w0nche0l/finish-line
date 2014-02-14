@@ -223,7 +223,7 @@
 	max-width: 40%;
 }
 
-.goalname {
+#goal-name-hack {
 	display:none;
 }
 

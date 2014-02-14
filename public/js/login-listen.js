@@ -6,6 +6,7 @@ $(document).ready(function() {
 	$('#btn-add').click(addFunction);
 	$('#submit-btn').click(cancelFunction);
 	console.log('blah');
+	addMilestones($('.milestone-list'));
 	addEvents($('.timeline-wrapper'));
 	addGoals($('#goal-list'));
 })
@@ -20,7 +21,20 @@ function addMilestones(e){
 function gotMilestones(result){
 	var milestoneList = $('.milestone-list');
 	console.log(result);
+	var goalname = $('#goal-name-hack').html();
+	console.log($('#goal-name-hack').html());
 	var goals = result['user']['goals'];
+	var realgoal ;
+	for(var i = 0 ; i < goals.length; ++i){
+		if(goals[i].name == goalname)
+			realgoal = goals[i];
+	}
+	console.log(realgoal);
+	for(var i = 0; i < realgoal.milestones.length; ++i){
+
+		milestoneList.append('<button type="button" class="btn btn-default">' + realgoal.milestones[i].name+'</button>')
+	}
+
 }
 
 function addGoals(e){
@@ -31,13 +45,25 @@ function addGoals(e){
 }
 
 function gotGoals(result){
-	var goalList = $('#goal-list');
-	console.log(result);
-	var goals = result['user']['goals'];
-	console.log(goals);
-	for(var i = 0; i< goals.length; ++i){
-		var string = '<li><a href="/add-milestone">' + goals[i].name +  '</a></li>';
-		goalList.append(string);
+	if($('#mainmenu').length==0){
+		var goalList = $('#goal-list');
+		console.log(result);
+		var goals = result['user']['goals'];
+		console.log(goals);
+		for(var i = 0; i< goals.length; ++i){
+			var string = '<li><a href="/add-milestone/' + goals[i].name+ '">' + goals[i].name +  '</a></li>';
+			goalList.append(string);
+		}
+	}
+	else{
+		var goalList = $('#goal-list');
+		console.log(result);
+		var goals = result['user']['goals'];
+		console.log(goals);
+		for(var i = 0; i< goals.length; ++i){
+			var string = '<li><a href="/homescreen/' + goals[i].name+ '">' + goals[i].name +  '</a></li>';
+			goalList.append(string);
+		}
 	}
 }
 
@@ -57,13 +83,35 @@ function gotEvents(result){
 	console.log(goals);
 	var milestones = new Array();
 	
-	for(var i = 0; i < goals.length; ++i){
-		var milestonelist = goals[i]['milestones'];
+	var goalname = $('#goal-name-hack').html();
+	console.log(goalname);
+	if(goalname != ''){
+		var realgoal ;
+		var realgolnum;
+		for(var i = 0 ; i < goals.length; ++i){
+			if(goals[i].name == goalname){
+				realgoal = goals[i];
+				realgolnum = i;
+				break;
+			}
+		}
+		var milestonelist = realgoal.milestones;
 		for(var j = 0; j <milestonelist.length; ++j){
 			milestonelist[j].actualDate = new Date(milestonelist[j]['date']);
-			milestonelist[j].goalNum = i;
+			milestonelist[j].goalNum = realgolnum;
 			milestonelist[j].milestoneNum = j;
 			milestones.push(milestonelist[j]);
+		}
+	}
+	else{
+		for(var i = 0; i < goals.length; ++i){
+			var milestonelist = goals[i]['milestones'];
+			for(var j = 0; j <milestonelist.length; ++j){
+				milestonelist[j].actualDate = new Date(milestonelist[j]['date']);
+				milestonelist[j].goalNum = i;
+				milestonelist[j].milestoneNum = j;
+				milestones.push(milestonelist[j]);
+			}
 		}
 	}
 	milestones.sort(dateComp);
@@ -99,6 +147,8 @@ function gotEvents(result){
                 '</div>';
    		timeline.append(string);
 	}
+
+	
 	console.log(milestones);
 }
 
