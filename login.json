@@ -11,15 +11,25 @@
 				"milestones" : [
 					{
 						"name" : "Read Chapter one",
-						"date": "2/13/2014"
+						"date": "2/13/2014",
+						"time": "7:30 PM"
+
 					},
 					{
 						"name" : "Read Chapter two",
-						"date": "2/16/2014"
+						"date": "2/13/2014",
+						"time": "8:30 PM"
+
 					},
 					{
 						"name" : "Read Chapter three",
-						"date": "2/17/2014"
+						"date": "2/16/2014",
+						"time": "4:30 PM"
+					},
+					{
+						"name" : "Read Chapter four",
+						"date": "2/17/2014",
+						"time": "5:30 PM"
 					}
 				]
 			},
@@ -31,7 +41,8 @@
 				"milestones":[
 					{
 						"name":"Cardio for 1 hour",
-						"date": "2/15/2014"
+						"date": "2/15/2014",
+						"time": "3:30 PM"
 					}
 				]
 			}
