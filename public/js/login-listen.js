@@ -6,8 +6,27 @@ $(document).ready(function() {
 	$('#btn-add').click(addFunction);
 	console.log('blah');
 	addEvents($('.timeline-wrapper'));
-
+	addGoals($('#goal-list'));
 })
+
+function addGoals(e){
+	if(e.length ==0)
+		return;
+	console.log('blah');
+	$.get('/data', gotGoals);
+}
+
+function gotGoals(result){
+	var goalList = $('#goal-list');
+	console.log(result);
+	var goals = result['user']['goals'];
+	console.log(goals);
+	for(var i = 0; i< goals.length; ++i){
+		var string = '<li><a href="/add-milestone">' + goals[i].name +  '</a></li>';
+		goalList.append(string);
+	}
+}
+
 
 
 function addEvents(e){
@@ -33,9 +52,7 @@ function gotEvents(result){
 			milestones.push(milestonelist[j]);
 		}
 	}
-
 	milestones.sort(dateComp);
-
 	for(var i = 0; i < milestones.length ; ){
 		var date = milestones[i].actualDate;
 		var dayMilestones = new Array();
@@ -63,11 +80,10 @@ function gotEvents(result){
 		string = '<div class = "day">' + string  + '</div>';
 		if(i == milestones.length)
 			string += '<div class="event event-complete event-add">'+
-                	'<p class="event-description"><a href="/add-milestone" class="add-milestone">Add Milestone</a></p>'+
+                	'<p class="event-description"><a href="/choose-goal" class="add-milestone">Add Milestone</a></p>'+
                 '</div>';
    		timeline.append(string);
 	}
-
 	console.log(milestones);
 }
 
