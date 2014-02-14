@@ -18,6 +18,7 @@ var addGoal = require('./routes/add-goal');
 var addMilestone = require('./routes/add-milestone');
 var help = require('./routes/help');
 var settings = require('./routes/settings');
+var data = require('.routes/data');
 
 
 // all environments
@@ -51,6 +52,7 @@ app.get('/add-goal' , addGoal.view);
 app.get('/add-milestone' , addMilestone.view);
 app.get('/help' , help.view);
 app.get('/settings', settings.view);
+app.get('/data' , data.getData)
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

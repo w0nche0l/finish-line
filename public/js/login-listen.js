@@ -4,7 +4,13 @@ $(document).ready(function() {
 	$('.btn-register').click(loginFunction);
 	$('#btn-cancel').click(cancelFunction);
 	$('#btn-add').click(addFunction);
+	addEvents($('.timeline-wrapper'));
 })
+
+
+function addEvents(e){
+	
+}
 
 function loginFunction(e){
 	e.preventDefault();
