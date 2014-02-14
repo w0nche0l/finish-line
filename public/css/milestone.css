@@ -55,6 +55,13 @@
 	margin-right: 0pt auto;
 }
 
+.menu-wrapper {
+	margin-top: 30pt;
+	max-width: 420pt;
+	margin-left: 0pt auto;
+	margin-right: 0pt auto;
+}
+
 .event {
 	max-width: 500pt;
 	background-color: #347edb;
