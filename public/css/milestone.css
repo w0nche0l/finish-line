@@ -46,10 +46,11 @@ body {
 }
 
 .timeline-wrapper {
-	margin-top: 48pt;
+	margin-top: 36pt;
 	max-width: 420pt;
 	margin-left: 0pt auto;
 	margin-right: 0pt auto;
+	padding: 0px 5px 0px 5px;
 }
 
 .form-wrapper {
