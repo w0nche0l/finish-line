@@ -42,7 +42,7 @@ body {
 .date {
 	font-size: 10pt;
 	margin-left: 8pt;
-	color: #8f8f8f;
+	color: #636363;
 }
 
 .timeline-wrapper {
@@ -129,6 +129,63 @@ body {
 	height: 30pt;
 	width: 100%;
 }
+
+/* individual goal timelines */
+.goal-header {
+	padding-top: 32pt;
+	background-color: #e5f1ff;
+}
+
+.goal-wrapper {
+	max-width: 420pt;
+	margin-left: 0pt auto;
+	margin-right: 0pt auto;
+	padding: 0px 10px 10px 10px;
+	margin-bottom: -36pt;
+}
+
+.goal-info {
+	line-height: 18pt;
+}
+
+.complete-by {
+	color: #636363;
+}
+
+.num-milestones {
+	color: #636363;
+}
+
+.complete-all {
+	float: left;
+}
+
+.edit-goal {
+	float: right;
+}
+
+.meter { 
+	height: 12px; 
+	position: relative;
+	background-color: #becbe0;
+	border-radius: 25px;
+	padding: 3px;
+}
+
+@-webkit-keyframes expandWidth {
+from {width: 0;}
+}
+
+.meter > span {
+	display: block;
+	height: 100%;
+	border-radius: 20px;
+	background-color: #347edb;
+	position: relative;
+	overflow: hidden;
+	-webkit-animation: expandWidth 1s;
+}
+
 
 /* login/signup styles */
 

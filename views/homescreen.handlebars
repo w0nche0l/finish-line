@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
 	<title>My Timeline</title>	
 	
@@ -27,7 +28,23 @@
         </h1>
     </nav>
     <div id="goal-name-hack">{{goalname}}</div>
+    <div class="goal-header">
+        <div class="container goal-wrapper">
+        <h3>Goal Name</h3>
+        <p class="goal-info">
+            <span class="complete-by">To be completed by February 20</span><br />
+            <span class="num-milestones">4 of 5 milestones completed</span>
+            <div class="meter">
+                <span style="width: 80%"></span>
+            </div>
+        </p>
+        <a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a>
+        <a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a>
+        </div>
+    </div>
+
     <div class="container timeline-wrapper">
+
     <!-- commented out 
         <div class="day">
     		<h2 class="date">February 6th 2014</h2>
