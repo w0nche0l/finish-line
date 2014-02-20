@@ -114,6 +114,7 @@ function gotEvents(result){
 			}
 		}
 	}
+
 	milestones.sort(dateComp);
 	for(var i = 0; i < milestones.length ; ){
 		var date = milestones[i].actualDate;
@@ -148,7 +149,7 @@ function gotEvents(result){
    		timeline.append(string);
 	}
 
-	
+
 	console.log(milestones);
 }
 
