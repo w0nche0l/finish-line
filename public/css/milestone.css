@@ -17,7 +17,7 @@ body {
 	margin: 0px auto;
 	margin-top: 10pt;
 	width: 100%;
-	padding: 0pt 5pt 0pt 5pt;
+	padding: 0pt 8pt 0pt 8pt;
 	font-size: 16pt;
 	text-align: center;
 	color: white;
@@ -46,10 +46,11 @@ body {
 }
 
 .timeline-wrapper {
-	margin-top: 48pt;
+	margin-top: 36pt;
 	max-width: 420pt;
 	margin-left: 0pt auto;
 	margin-right: 0pt auto;
+	padding: 0px 10px 0px 10px;
 }
 
 .form-wrapper {
