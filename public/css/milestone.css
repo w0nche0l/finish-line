@@ -1,13 +1,13 @@
 /* global styles */
 
-* {
+body {
 	font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
 }
 
 /* main app styles */
 
 .navbar {
-	height: 44pt;
+	height: 34pt;
 	background-color: #323232;
 	border: none;
 	opacity: 0.9;
@@ -15,9 +15,9 @@
 
 .navbar h1 {
 	margin: 0px auto;
-	margin-top: 14pt;
+	margin-top: 10pt;
 	width: 100%;
-	padding: 0pt 10pt 0pt 10pt;
+	padding: 0pt 5pt 0pt 5pt;
 	font-size: 16pt;
 	text-align: center;
 	color: white;
@@ -26,15 +26,18 @@
 .btn-right {
 	float: right;
 	color: white;
-	font-size: 16pt;
+	font-size: 18pt;
+	margin-top: -2pt;
+	font-family: "Glyphicons Halflings" !important;
 }
 
 .btn-left {
 	float: left;
 	color: white;
-	font-size: 16pt;
+	font-size: 18pt;
+	margin-top: -2pt;
+	font-family: "Glyphicons Halflings" !important;
 }
-
 
 .date {
 	font-size: 10pt;
@@ -72,14 +75,14 @@
 
 .event {
 	max-width: 500pt;
-	background-color: #347edb;
+	background-color: #aecbf1;
 	border-radius: 5pt;
 	min-height: 44pt;
 	margin: 8pt 0pt 4pt 0pt;
 }
 
 .event-incomplete {
-	background-color: #aecbf1;
+	background-color: #347edb;
 }
 
 .event .event-description {

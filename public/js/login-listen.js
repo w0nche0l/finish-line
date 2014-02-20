@@ -138,7 +138,7 @@ function gotEvents(result){
                 '<p class="milestone-progress">' +
                 	(dayMilestones[j].milestoneNum+1) + '/'+goals[dayMilestones[j].goalNum]['milestones'].length+
                 '</p><br />' +
-    			'<p class="event-description">'+ dayMilestones[j].name + '</p>' +
+    			'<p class="event-description"><span class="glyphicon glyphicon-ok"></span>   '+ dayMilestones[j].name + '</p>' +
     			'</div>';
 		}
 		string = '<div class = "day">' + string  + '</div>';
