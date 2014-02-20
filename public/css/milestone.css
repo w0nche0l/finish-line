@@ -130,6 +130,29 @@ body {
 	width: 100%;
 }
 
+/* individual goal timelines */
+.goal-header {
+	padding-top: 32pt;
+	background-color: #e5f1ff;
+}
+
+.goal-wrapper {
+	max-width: 420pt;
+	margin-left: 0pt auto;
+	margin-right: 0pt auto;
+	padding: 0px 10px 10px 10px;
+	margin-bottom: -30pt;
+}
+
+.complete-all {
+	float: left;
+}
+
+.edit-goal {
+	float: right;
+}
+
+
 /* login/signup styles */
 
 .login-header {
