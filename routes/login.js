@@ -71,5 +71,7 @@ exports.signUpPost = function(req, res){
 exports.logOutPost = function(req,res){
 	res.clearCookie('user');
 	res.clearCookie('pass');
+	console.log('lgout');
+	//console.log(req.cookie.user);
 	req.session.destroy(function(e){ res.send('ok', 200); });
 }
