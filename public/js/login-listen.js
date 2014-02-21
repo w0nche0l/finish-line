@@ -294,12 +294,16 @@ function addGoalFunction(e){
 	e.preventDefault();
 	
 	console.log('clicked');
-	$.post('/addgoal', {"name" : $('#name').val() , "date": $('date').val()},  
-		function(data, status){
+	console.log( $('#name').val() );
+	$.post('/addgoal', {
+		"name" : $('#name').val() , 
+		"date": $('#date').val()
+	},  
+	function(data, status){
 		console.log(data);
 		console.log(status);
 		window.location.href = "/";
-		});
+	});		
 };
 
 

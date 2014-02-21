@@ -72,9 +72,10 @@ exports.addGoal = function(req, res) {
   //console.log(form_data);
   // make a new Project and save it to the DB
   // YOU MUST send an OK response w/ res.send();
+  console.log(req.name);
   var newGoal = new models.Goal({
-    "name":req.name, 
-  	"completionDate":req.date,
+    "name":req.param('name'), 
+  	"completionDate":req.param('date'),
   	"color1":req.color1,
   	"color2":req.color2
   });
@@ -92,8 +93,8 @@ exports.addMilestone = function(req, res) {
   // make a new Project and save it to the DB
   // YOU MUST send an OK response w/ res.send();
   var newGoal = new models.Goal({
-    "name":req.name, 
-  	"completionDate":req.date,
+    "name":req.param('name'), 
+  	"completionDate":req.param('date'),
   	"color1":req.color1,
   	"color2":req.color2
   });
