@@ -3,10 +3,11 @@
 $(document).ready(function() {
 
 	$('#submit-btn').click(loginFunction);
+	$('#btn-back').click(cancelFunction);
 	$('.btn-register').click(goToSignUp);
 	$('#makeact-btn').click(signupFunction);
 	$('#btn-cancel').click(cancelFunction);
-	$('#btn-add').click(addFunction);
+	$('#btn-add').click(addMilestoneFunction);
 	$('#btn-menu').click(menuFunction);
 	$('#btn-back-homescreen').click(cancelFunction);
 	$('.logout').click(logOutFunction);
@@ -350,6 +351,15 @@ function addFunction(e){
 	e.preventDefault();
 	window.location.href= '/add-goal';
 };
+
+function addMilestoneFunction(e){
+	e.preventDefault();
+	if($('#goal-name-hack').html()){
+		window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
+	}
+	else
+		window.location.href= '/choose-goal';
+}
 
 
 function menuFunction(e){
