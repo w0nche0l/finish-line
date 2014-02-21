@@ -12,6 +12,7 @@ $(document).ready(function() {
 	$('#btn-back-homescreen').click(cancelFunction);
 	$('.logout').click(logOutFunction);
 	$('#add-goal').click(addGoalFunction);
+	$('#submit-milestone-btn').click(addMilestonePost);
 	//$('#submit-btn').click(cancelFunction);
 	console.log('blah');
 	addMilestones($('.milestone-list'));
@@ -99,7 +100,7 @@ function gotEvents(result){
 
 	var timeline = $('.timeline-wrapper');
 
-	if(result == undefined){
+	if(result[0] == undefined){
 		$('.goal-header').remove();
 		return;
 	}
@@ -188,7 +189,7 @@ function gotEvents(result){
                 	(dayMilestones[j].milestoneNum+1) + '/'+goals[dayMilestones[j].goalNum]['milestones'].length+
                 '</p><br />' +
     			'<p class="event-description" id = "' +  dayMilestones[j]._id+
-    			'"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;'+ dayMilestones[j].name + '</p>' +
+    			'"><span class="glyphicon glyphicon-ok"></span >&nbsp;&nbsp;'+ dayMilestones[j].name + '</p>' +
     			'</div>';
 		}
 		string = '<div class = "day">' + string  + '</div>';
@@ -205,6 +206,10 @@ function gotEvents(result){
   //       }
    		timeline.append(string);
 	}
+
+	$('.glyphicon-ok').click(function(e){
+		$(this).toggleClass("black");
+	})
 
 
 	console.log(milestones);
@@ -251,8 +256,8 @@ function makeGoalHeader(results, goalnum){
         string += '<span class="num-milestones">'+  smallnum + ' of '+ bignum + ' milestones completed</span>'+
            '<div class="meter">'+
                 '<span style="width: ' + smallnum/bignum*100 + '%"></span>'+
-            '</div>'+
-        '</p><a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a><a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a></div>';
+             '</div>'//+
+        // '</p><a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a><a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a></div>';
 
         $(".goal-header").append(string);
 
@@ -334,7 +339,21 @@ function addGoalFunction(e){
 	});		
 };
 
-
+function addMilestonePost(e){
+	e.preventDefault;
+	console.log('trying to add milestone');
+	console.log($('#goal-name-hack').html());
+	$.post('/addmilestonepost', {
+		"name" : $('#goalname').val() , 
+		"date": $('#complete').val(),
+		"goal": $('#goal-name-hack').html()
+	}, function(data, status){
+		console.log(data);
+		console.log(status);
+		window.location.href = "/";
+	});
+	
+}
 
 
 function goToSignUp(e){

@@ -88,6 +88,30 @@ exports.addGoal = function(req, res) {
 }
 
 
+exports.addMilestone = function(req, res) {
+  //var form_data = req.body;
+  //console.log(form_data);
+  // make a new Project and save it to the DB
+  // YOU MUST send an OK response w/ res.send();
+  console.log(req.param('name') + " goal" + req.param('goal'));
+  var newMilestone = new models.Milestone({
+    "name":req.param('name'), 
+  	"date":req.param('date'),
+  	"completed":false
+  });
+  console.log(newMilestone);
+  console.log(req.cookies.user);
+  models.User.update({"username":req.cookies.user , 'goals.name' : req.param('goal')},
+  	{$push: {'goals.$.milestones': newMilestone}},
+  	 afterQuery);
+  function afterQuery(err, projects) {
+  	console.log('finished');
+  	console.log(projects);
+    if(err) console.log(err);
+  }
+};
+
+
 
 /*
 	POST request for deleting a specific goal
