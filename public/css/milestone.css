@@ -203,6 +203,17 @@ from {width: 0;}
 	-webkit-animation: expandWidth 1s;
 }
 
+.add-goal {
+	background-color: #86c033;
+	color: white;
+	text-align: center;
+}
+
+.add-goal:hover {
+	background-color: #86c033 !important;
+	color: #ddebc8;
+}
+
 
 /* login/signup styles */
 
