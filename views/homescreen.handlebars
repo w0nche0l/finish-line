@@ -2,81 +2,81 @@
 
 <html>
 <head>
-    <meta charset="utf-8">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-	<title>My Timeline</title>	
+	<meta charset="utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>Milestone</title>	
 	
 	<link href="/css/bootstrap.css" rel="stylesheet">
 	<link href="/css/milestone.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->        
-</head>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	  <![endif]-->        
+	</head>
 
-<body>	
-    <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
-		<h1 class="title">
-            <span class="btn-left" id="btn-menu"><span class="glyphicon glyphicon-th-list"></span></span>
-            All Goals
-            <span class="btn-right" id="btn-add"><span class="glyphicon glyphicon-plus"></span></span>
-        </h1>
-    </nav>
-    <div id="goal-name-hack">{{goalname}}</div>
-    <div class="goal-header">
-        <div class="container goal-wrapper">
-        <h3>Goal Name</h3>
-        <p class="goal-info">
-            <span class="complete-by">Finish by February 20</span><br />
-            <span class="num-milestones">4 of 5 milestones completed</span>
-            <div class="meter">
-                <span style="width: 80%"></span>
-            </div>
-        </p>
-        <a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a>
-        <a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a>
-        </div>
-    </div>
-
-    <div class="container timeline-wrapper">
-
-    <!-- commented out 
-        <div class="day">
-    		<h2 class="date">February 6th 2014</h2>
-    		<div class="event">
-                <p class="event-complete-time">Completed at 4:30PM</p>
-                <p class="milestone-progress">1/7</p><br />
-    			<p class="event-description">Ate Food</p>
+	<body>	
+		<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+			<h1 class="title">
+				<span class="btn-left" id="btn-menu"><span class="glyphicon glyphicon-th-list"></span></span>
+				All Goals
+				<span class="btn-right" id="btn-add"><span class="glyphicon glyphicon-plus"></span></span>
+			</h1>
+		</nav>
+		<div id="goal-name-hack">{{goalname}}</div>
+		<div class="goal-header">
+			<div class="container goal-wrapper">
+				<h3>Goal Name</h3>
+				<p class="goal-info">
+					<span class="complete-by">Finish by February 20</span><br />
+					<span class="num-milestones">4 of 5 milestones completed</span>
+					<div class="meter">
+						<span style="width: 80%"></span>
+					</div>
+				</p>
+				<a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a>
+				<a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a>
 			</div>
-    		<div class="event">
-                <p class="event-complete-time">Completed at 5:30PM</p>
-                <p class="milestone-progress">2/7</p><br />
-                <p class="event-description">Read a book</p>
-            </div>
-    	</div>
-    	<div class="day">
-    		<h2 class="date">February 7th 2014</h2>
-    		<div class="event event-incomplete">
-                <p class="event-complete-time">Complete by 5:30PM</p>
-                <p class="milestone-progress">3/7</p><br />
-                <p class="event-description">Rode a bike. Testing longer cells</p>
-            </div>
-            <div class="event event-complete event-add">
-                <p class="event-description"><a href="/add-milestone" class="add-milestone">Add Milestone</a></p>
-            </div>
-    	</div> 
-    -->
+		</div>
 
-    </div>
+		<div class="container timeline-wrapper">
 
-	<script src="/js/jquery-1.11.0.js"></script>
-	<script src="/js/bootstrap.js"></script>
-    <script src = "/js/login-listen.js"></script>
+	<!-- commented out 
+		<div class="day">
+			<h2 class="date">February 6th 2014</h2>
+			<div class="event">
+				<p class="event-complete-time">Completed at 4:30PM</p>
+				<p class="milestone-progress">1/7</p><br />
+				<p class="event-description">Ate Food</p>
+			</div>
+			<div class="event">
+				<p class="event-complete-time">Completed at 5:30PM</p>
+				<p class="milestone-progress">2/7</p><br />
+				<p class="event-description">Read a book</p>
+			</div>
+		</div>
+		<div class="day">
+			<h2 class="date">February 7th 2014</h2>
+			<div class="event event-incomplete">
+				<p class="event-complete-time">Complete by 5:30PM</p>
+				<p class="milestone-progress">3/7</p><br />
+				<p class="event-description">Rode a bike. Testing longer cells</p>
+			</div>
+			<div class="event event-complete event-add">
+				<p class="event-description"><a href="/add-milestone" class="add-milestone">Add Milestone</a></p>
+			</div>
+		</div> 
+	-->
+
+</div>
+
+<script src="/js/jquery-1.11.0.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src = "/js/login-listen.js"></script>
 
 </body>
 </html>

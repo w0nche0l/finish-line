@@ -23,21 +23,19 @@
 		<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
 			<h1 class="title">
 				<span class="btn-left" id="btn-cancel"><span class="glyphicon glyphicon-arrow-left"></span></span>
-				Add Milestone
+				Edit Milestone
+				<span class="btn-right"><span class="glyphicon glyphicon-arrow-left"></span></span>
 			</h1>
 		</nav>
 
 		<div id="goal-name-hack">{{goalname}}</div>
 
 		<div class="container form-wrapper">
-			<div class="form-group">
-				<label for="goalname">Add a new milestone to this goal</label>
-				<input type="text" class="form-control" id="goalname" placeholder="Milestone name" name="goalname">
-				<label for="complete">Completion Date</label>
-				<input type="text" class="form-control" id="complete" placeholder="Date" name="complete">
-				<div class="buttons">
-					<input type="submit" id="submit-btn" class="btn btn-login" value="Add Milestone"></input>
-				</div>
+			<input type="text" class="form-control" id="name" placeholder="Change milestone name" name="editname">
+			<input type="text" class="form-control" id="complete" placeholder="Completion Date" name="complete">
+
+			<div class="buttons">
+				<input type="submit" id="submit-btn" class="btn btn-login" value="Save changes"></input>
 			</div>
 		</div>
 
@@ -47,4 +45,3 @@
 
 	</body>
 	</html>
-	
