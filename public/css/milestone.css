@@ -10,6 +10,8 @@ body {
 	text-align: center;
 	line-height: 22pt;
 	color: #636363;
+	padding-left: 16pt;
+	padding-right: 16pt;
 }
 
 .help-wrapper {
