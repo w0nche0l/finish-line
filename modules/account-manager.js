@@ -4,7 +4,7 @@ var Server 		= require('mongodb').Server;
 //var moment 		= require('moment');
 
 var dbPort 		= 27017;
-var dbHost 		= 'localhost';
+var dbHost 		= 'mongodb://heroku_app22389483:olvu5pv1ll0r0i5s6nkn7kfmma@ds033629.mongolab.com:33629/heroku_app22389483';
 var dbName 		= 'node-login';
 //var data = require('../login.json');
 var models = require('../models');
