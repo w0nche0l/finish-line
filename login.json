@@ -1,51 +1,51 @@
-{
-	"user":{
-		"id" : "username",
-		"password" : "password",
-		"name" : "Dennis",
+[
+	{
+		"firstname" : "Dennis",
+		"email" : "wonjeo@gmail.com",
+		"username" : "Dennis",
 		"goals":[
 			{
 				"name":"Read Hamlet",
+				"completionDate":"12/12/12",
 				"color1":"#347EDB",
 				"color2":"#AECBF1",
 				"milestones" : [
 					{
 						"name" : "Read Chapter one",
 						"date": "2/13/2014",
-						"time": "7:30 PM"
-
+						"completed":false
 					},
 					{
 						"name" : "Read Chapter two",
 						"date": "2/13/2014",
-						"time": "8:30 PM"
-
+						"completed":false
 					},
 					{
 						"name" : "Read Chapter three",
 						"date": "2/16/2014",
-						"time": "4:30 PM"
+						"completed":false
 					},
 					{
 						"name" : "Read Chapter four",
 						"date": "2/17/2014",
-						"time": "5:30 PM"
+						"completed":false
 					}
 				]
 			},
 
 			{
 				"name" : "Exercise Regularly",
+				"completionDate":"12/12/12",
 				"color1": "#8EBA18",
 				"color2": "#D2E3A3",
 				"milestones":[
 					{
 						"name":"Cardio for 1 hour",
 						"date": "2/15/2014",
-						"time": "3:30 PM"
+						"completed":false
 					}
 				]
 			}
 		]
 	}
-}
+]

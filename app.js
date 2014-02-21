@@ -9,6 +9,16 @@ var path = require('path');
 var handlebars = require('express3-handlebars')
 
 
+//mongodb stuff
+var mongoose = require('mongoose');
+var db = mongoose.connection;
+db.on('error', console.error);
+var local_database_name = 'milestone';
+var local_database_uri  = 'mongodb://localhost/' + local_database_name
+var database_uri = process.env.MONGOLAB_URI || local_database_uri
+mongoose.connect(database_uri);
+
+
 
 // Routes
 var login = require('./routes/login');
@@ -45,20 +55,29 @@ if ('development' == app.get('env')) {
 }
 
 // Add routes here
-app.get('/', login.view);
+app.get('/', login.loginView);
+app.post('/',login.loginPost);
 // Example route
 // app.get('/users', user.list);
-app.get('/homescreen' , homescreen.view);
-app.get('/signup' , signUp.view);
+app.get('/signup' , login.signUpView);
+app.post('/signup', login.signUpPost);
+
+app.post('/logout', login.logOutPost);
+
 app.get('/add-goal' , addGoal.view);
 app.get('/add-milestone' , addMilestone.view);
+app.get('/add-milestone/:goalname', addMilestone.view);
 app.get('/help' , help.view);
 app.get('/settings', settings.view);
 app.get('/data' , data.getData)
 app.get('/menu', menu.view);
 app.get('/choose-goal', chooseGoal.view);
-app.get('/add-milestone/:goalname', addMilestone.view);
+app.get('/homescreen' , homescreen.view);
 app.get('/homescreen/:goalname',homescreen.view);
+
+app.post('/getms', data.getUserData);
+app.post('/addgoal', data.addGoal);
+app.post('/delgoal', data.deleteGoal);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
