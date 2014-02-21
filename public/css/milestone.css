@@ -9,7 +9,9 @@ body {
 .navbar {
 	height: 34pt;
 	background-color: #323232;
-	border: none;
+	/*only if you want special stuff*/
+	/*border-bottom: 1px solid black;
+	box-shadow: 0px 0px 3px #6b6b6b;*/
 	opacity: 0.9;
 }
 
@@ -133,7 +135,7 @@ body {
 /* individual goal timelines */
 .goal-header {
 	padding-top: 32pt;
-	background-color: #e5f1ff;
+	background-color: #e9f0f8;
 }
 
 .goal-wrapper {
