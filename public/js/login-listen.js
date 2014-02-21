@@ -55,6 +55,7 @@ function addGoals(e){
 }
 
 function gotGoals(result){
+	console.log(result);
 	if($('#mainmenu').length==0){
 		var goalList = $('#goal-list');
 		console.log(result);
@@ -71,15 +72,15 @@ function gotGoals(result){
 		var goals = result[0]['goals'];
 		console.log(goals);
 		for(var i = 0; i< goals.length; ++i){
-			var string = '<li id = "' + goals[i]._id+ '"><div><a href="/homescreen/' + goals[i].name+ '">' + goals[i].name +  '</a> <a class = "delete">X</a></div></li>';
+			var string = '<li id = "' + goals[i]._id+ '"><a href="/homescreen/' + goals[i].name+ '">' + goals[i].name +  '</a></li>';
 			goalList.append(string);
-			$('#'+ goals[i]._id+' a[class = delete]').bind("click", function(e){
-				e.preventDefault();
-				console.log("clicked");
-				console.log( $(this).parent().parent().attr('id'));
-				$.post('/delgoal', {id: $(this).parent().attr('id')});
-				//window.location.href = '/menu';
-			});
+			// $('#'+ goals[i]._id+' a[class = delete]').bind("click", function(e){
+			// 	e.preventDefault();
+			// 	console.log("clicked");
+			// 	console.log( $(this).parent().parent().attr('id'));
+			// 	$.post('/delgoal', {id: $(this).parent().attr('id')});
+			// 	//window.location.href = '/menu';
+			// });
 		}
 	}
 }
@@ -96,8 +97,17 @@ function addEvents(e){
 function gotEvents(result){
 
 	var timeline = $('.timeline-wrapper');
+
+	if(result == undefined){
+		$('.goal-header').remove();
+		return;
+	}
+	else{
+		$('.help-wrapper').hide();
+	}
 	console.log(result);
 	var goals = result[0]['goals'];
+
 	console.log(goals);
 	var milestones = new Array();
 	
@@ -137,6 +147,23 @@ function gotEvents(result){
 	}
 
 	milestones.sort(dateComp);
+
+	// if(milestones.length ==0){
+	// 	var string = '<div class = "day">' +   '</div>';
+		
+	// 		if(goalname == ''){
+	// 			string += '<div class="event event-incomplete event-add">'+
+ //                	'<p class="event-description"><a href="/choose-goal" class="add-milestone">Plan Milestone</a></p>'+
+ //                	'</div>';
+ //            }
+ //            else{
+ //            	string += '<div class="event event-incomplete event-add">' +
+ //                	'<p class="event-description"><a href="/add-milestone/' + goalname + '"class="add-milestone">Plan Milestone</a></p>'+
+ //                	'</div>';	
+ //        }
+ //        timeline.append(string);
+	// }
+
 	for(var i = 0; i < milestones.length ; ){
 		var date = milestones[i].actualDate;
 		var dayMilestones = new Array();
@@ -164,17 +191,17 @@ function gotEvents(result){
     			'</div>';
 		}
 		string = '<div class = "day">' + string  + '</div>';
-		if(i == milestones.length)
-			if(goalname == ''){
-				string += '<div class="event event-incomplete event-add">'+
-                	'<p class="event-description"><a href="/choose-goal" class="add-milestone">Plan Milestone</a></p>'+
-                	'</div>';
-            }
-            else{
-            	string += '<div class="event event-incomplete event-add">' +
-                	'<p class="event-description"><a href="/add-milestone/' + goalname + '"class="add-milestone">Plan Milestone</a></p>'+
-                	'</div>';	
-            }
+		// if(i == milestones.length)
+		// 	if(goalname == ''){
+		// 		string += '<div class="event event-incomplete event-add">'+
+  //               	'<p class="event-description"><a href="/choose-goal" class="add-milestone">Plan Milestone</a></p>'+
+  //               	'</div>';
+  //           }
+  //           else{
+  //           	string += '<div class="event event-incomplete event-add">' +
+  //               	'<p class="event-description"><a href="/add-milestone/' + goalname + '"class="add-milestone">Plan Milestone</a></p>'+
+  //               	'</div>';	
+  //       }
    		timeline.append(string);
 	}
 

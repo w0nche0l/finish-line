@@ -6,7 +6,8 @@ var Server 		= require('mongodb').Server;
 var dbPort 		= 27017;
 var dbHost 		= 'localhost';
 var dbName 		= 'node-login';
-
+//var data = require('../login.json');
+var models = require('../models');
 /* establish the database connection */
 
 var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
@@ -73,6 +74,11 @@ exports.addNewAccount = function(newData, callback)
 
 					//SUPER UNSAFE FIX IMMEDIATELY
 					accounts.insert(newData, {safe: true}, callback);
+					var newAccount = new models.User({
+					    "username":newData.user,
+					    "email":newData.email
+					});
+					newAccount.save();
 					/*saltAndHash(newData.pass, function(hash){
 						newData.pass = hash;
 						// append date stamp when record was created //

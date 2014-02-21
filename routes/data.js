@@ -1,4 +1,4 @@
-var data = require('../login.json');
+//var data = require('../login.json');
 var models = require('../models');
 var ObjectId = require('mongodb').ObjectId;
 
@@ -15,7 +15,7 @@ exports.getUserData = function(req,res, callback){
 		user.exec(function(e, data){
 			console.log(e);
 			console.log(data);
-			//res.send(data);
+			res.send(data);
 	});
 
 
@@ -80,6 +80,7 @@ exports.addGoal = function(req, res) {
   	"color2":req.color2
   });
   console.log(newGoal);
+  console.log(req.cookies.user);
   models.User.update({"username":req.cookies.user},{$push: {goals: newGoal}},afterQuery);
   function afterQuery(err, projects) {
     if(err) console.log(err);
@@ -87,23 +88,6 @@ exports.addGoal = function(req, res) {
 }
 
 
-exports.addMilestone = function(req, res) {
-  //var form_data = req.body;
-  //console.log(form_data);
-  // make a new Project and save it to the DB
-  // YOU MUST send an OK response w/ res.send();
-  var newGoal = new models.Goal({
-    "name":req.param('name'), 
-  	"completionDate":req.param('date'),
-  	"color1":req.color1,
-  	"color2":req.color2
-  });
-  models.User.update({"username":req.cookies.user},{$push: {goals: newGoal}},afterQuery);
-  function afterQuery(err, projects) {
-    if(err) console.log(err);
-    res.send();
-  }
-}
 
 /*
 	POST request for deleting a specific goal
@@ -139,7 +123,6 @@ exports.toggleMilestone = function(req,res){
 
 exports.getData = function(req, res) {
 	// get a random palette from the top ones
-
 	console.log('user is ' + req.cookies.user);
 
 	var user = models.User.find({"username":req.cookies.user});
