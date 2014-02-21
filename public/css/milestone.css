@@ -4,6 +4,21 @@ body {
 	font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
 }
 
+/* styles for first run help dialogs */
+.help {
+	font-size: 16pt;
+	text-align: center;
+	line-height: 22pt;
+	color: #636363;
+	padding-left: 16pt;
+	padding-right: 16pt;
+}
+
+.help-wrapper {
+	margin-top: 60pt;
+}
+
+
 /* main app styles */
 
 .navbar {
