@@ -29,11 +29,13 @@
 
   		<form id="login-box" role="form" method="get" action="/homescreen">
   			<div class="form-group">
-  				<input type="text" class="form-control" id="name" placeholder="ID" name="name">
-  				<input type="text" class="form-control" id="password" placeholder="Password" name="password">
-          <input type="text" class="form-control" id="password" placeholder="Verify Password" name="password">
+          <input type="text" class="form-control" id="name" placeholder="First Name" name="name">
+          <input type="text" class="form-control" id="email" placeholder="Email" name="email">
+  				<input type="text" class="form-control" id="username" placeholder="Username" name="username">
+  				<input type="password" class="form-control" id="password" placeholder="Password" name="password">
+          <input type="password"class="form-control" id="passwordv" placeholder="Verify Password" name="passwordv">
   				<div class="buttons">
-  					<input type="submit" id="submit-btn" class="btn btn-login" value="Make Account"></input>
+  					<input type="button" id="makeact-btn" class="btn btn-login" value="Make Account"></input>
           </div>
   			</div>
   		</form>
@@ -42,6 +44,7 @@
 
   	<script src = "/js/jquery-1.11.0.js"></script>
   	<script src = "/js/bootstrap.js"></script>
+    <script src ="/js/login-listen.js"></script>
 
   </body>
   </html>
