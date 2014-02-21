@@ -1,15 +1,20 @@
+
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
 
-	$('.btn-register').click(loginFunction);
+	$('#submit-btn').click(loginFunction);
+	$('.btn-register').click(goToSignUp);
+	$('#makeact-btn').click(signupFunction);
 	$('#btn-cancel').click(cancelFunction);
 	$('#btn-add').click(addFunction);
-	$('#submit-btn').click(cancelFunction);
+	//$('#submit-btn').click(cancelFunction);
 	console.log('blah');
 	addMilestones($('.milestone-list'));
 	addEvents($('.timeline-wrapper'));
 	addGoals($('#goal-list'));
 })
+
+
 
 function addMilestones(e){
 	if(e.length ==0)
@@ -157,11 +162,36 @@ function dateComp(a,b){
 	return new Date(a.actualDate)-new Date(b.actualDate);
 }
 
+
 function loginFunction(e){
 	e.preventDefault();
+	console.log('loggingin');
+	$.post('/', {
+		"user": $('#name').val(),
+		"pass": $('#password').val(),
+		"remember-me": 'true'
+	});
+}
+
+
+
+function signupFunction(e){
+	e.preventDefault();
 	//replace this with actual login information
-	window.location.href='/signup';
+	console.log('signingup');
+	$.post('/signup', {
+		"name": $('#name').val(),
+		"user": $('#username').val(),
+		"email" : $('#email').val(),
+		"pass": $('#password').val()
+	})
+	//$.get('/');
 };
+
+function goToSignUp(e){
+	e.preventDefault();
+	window.location.href= '/signup';
+}
 
 function cancelFunction(e){
 	e.preventDefault();
