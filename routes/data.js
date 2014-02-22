@@ -47,7 +47,7 @@ exports.getUserData = function(req,res, callback){
 			console.log(res);
 		});
 	}*/
-}
+};
 
 /*
 	POST request for adding milestone to a specific goal
@@ -88,7 +88,6 @@ exports.addGoal = function(req, res) {
     if(err) console.log(err);
     res.send(projects , 200);
   }
-  res.send(null, 200);
 };
 
 

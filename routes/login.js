@@ -61,6 +61,8 @@ exports.signUpPost = function(req, res){
 		pass	: req.param('pass')
 	}, function(e){
 		if (e){
+			console.log('error:');
+			console.log(e);
 			res.send(e, 400);
 		}	else{
 			res.send('ok', 200);

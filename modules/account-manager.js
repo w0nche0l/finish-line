@@ -7,7 +7,7 @@ var Server 		= require('mongodb').Server;
 // var dbHost 		= process.env.MONGOLAB_URI||'localhost';
 // var dbName 		= 'node-login';
 
-var dbPort 		= 33629;
+var dbPort 		= 27017;
 var dbHost 		= process.env.MONGOLAB_URI||'localhost';
 var dbName 		= 'heroku_app22389483';
 
