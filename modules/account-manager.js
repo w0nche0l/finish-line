@@ -3,9 +3,13 @@ var MongoDB 	= require('mongodb').Db;
 var Server 		= require('mongodb').Server;
 //var moment 		= require('moment');
 
-var dbPort 		= '332629';
-var dbHost 		= 'ds033629.mongolab.com';
-var dbName 		= 'node-login';
+// var dbPort 		= 27017;
+// var dbHost 		= process.env.MONGOLAB_URI||'localhost';
+// var dbName 		= 'node-login';
+
+var dbPort 		= 33629;
+var dbHost 		= process.env.MONGOLAB_URI||'localhost';
+var dbName 		= 'heroku_app22389483';
 //var data = require('../login.json');
 var models = require('../models');
 /* establish the database connection */
