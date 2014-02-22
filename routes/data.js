@@ -72,23 +72,27 @@ exports.addGoal = function(req, res) {
   //console.log(form_data);
   // make a new Project and save it to the DB
   // YOU MUST send an OK response w/ res.send();
-  console.log(req.name);
+  console.log(req.param('name'));
+  console.log(req.cookies.user);
   var newGoal = new models.Goal({
     "name":req.param('name'), 
-  	"completionDate":req.param('date'),
+  	"completionDate": new Date(req.param('date')),
   	"color1":req.color1,
   	"color2":req.color2
   });
   console.log(newGoal);
-  console.log(req.cookies.user);
-  models.User.update({"username":req.cookies.user},{$push: {goals: newGoal}},afterQuery);
+  models.User.update({"username":req.cookies.user},{$push: {goals: newGoal}}, afterQuery);
   function afterQuery(err, projects) {
+  	console.log('finished');
+  	console.log(projects);
     if(err) console.log(err);
+    res.send(projects , 200);
   }
-}
+  res.send(null, 200);
+};
 
 
-exports.addMilestone = function(req, res) {
+exports.addMilestone = function(req, res,callback) {
   //var form_data = req.body;
   //console.log(form_data);
   // make a new Project and save it to the DB
@@ -102,16 +106,15 @@ exports.addMilestone = function(req, res) {
   console.log(newMilestone);
   console.log(req.cookies.user);
   models.User.update({"username":req.cookies.user , 'goals.name' : req.param('goal')},
-  	{$push: {'goals.$.milestones': newMilestone}},
-  	 afterQuery);
+  	{$push: {'goals.$.milestones': newMilestone}}, afterQuery);
   function afterQuery(err, projects) {
   	console.log('finished');
   	console.log(projects);
     if(err) console.log(err);
-  }
+    res.send(projects, 200);
+  };
 };
-
-
+ 
 
 /*
 	POST request for deleting a specific goal
@@ -129,9 +132,11 @@ exports.deleteGoal = function(req,res){
 	function afterQuery(err, projects) {
 		console.log(projects);
     	if(err) console.log(err);
-  	}
-}
+    	res.send(projects, 200);
+  	};
+};
  
+
 exports.toggleMilestone = function(req,res){
 	console.log('trying to toggle');
 	var milestonename = req.mlname;
@@ -139,10 +144,11 @@ exports.toggleMilestone = function(req,res){
 
 	models.User.update({'username':req.cookies.user, 'goals.milestone.id': mlid, 'goals.milestone.name' : mlname}, {'$set': {
     	'goals.$.$.completed': 'true'
-	}}, function(err){
+	}}, function(err, projects){
 		console.log(err);
+		res.send(projects, 200);
 	});
-}
+};
 
 
 exports.getData = function(req, res) {
@@ -155,4 +161,4 @@ exports.getData = function(req, res) {
 			console.log(data);
 			res.send(data);
 	});
-}
+};

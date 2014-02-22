@@ -100,7 +100,7 @@ function gotEvents(result){
 
 	var timeline = $('.timeline-wrapper');
 
-	if(result[0] == undefined){
+	if(result[0] == undefined || result[0].goals.length ==0){
 		$('.goal-header').remove();
 		return;
 	}
@@ -150,29 +150,26 @@ function gotEvents(result){
 
 	milestones.sort(dateComp);
 
-	// if(milestones.length ==0){
-	// 	var string = '<div class = "day">' +   '</div>';
-		
-	// 		if(goalname == ''){
-	// 			string += '<div class="event event-incomplete event-add">'+
- //                	'<p class="event-description"><a href="/choose-goal" class="add-milestone">Plan Milestone</a></p>'+
- //                	'</div>';
- //            }
- //            else{
- //            	string += '<div class="event event-incomplete event-add">' +
- //                	'<p class="event-description"><a href="/add-milestone/' + goalname + '"class="add-milestone">Plan Milestone</a></p>'+
- //                	'</div>';	
- //        }
- //        timeline.append(string);
-	// }
-
+	console.log(milestones);
 	for(var i = 0; i < milestones.length ; ){
 		var date = milestones[i].actualDate;
+		if(isNaN(date.getTime())){
+			i++;
+			continue;
+		}
+
+
+
 		var dayMilestones = new Array();
+		console.log(date);
+
 		while(i < milestones.length && milestones[i].actualDate.getTime() == date.getTime()){
 			dayMilestones.push(milestones[i]);
 			i++;
+			
 		}
+
+
 
 		var string = '<h2 class="date">'+ date.toDateString() + ' </h2>'
 		for(var j = 0; j < dayMilestones.length; ++j){
@@ -189,28 +186,16 @@ function gotEvents(result){
                 	(dayMilestones[j].milestoneNum+1) + '/'+goals[dayMilestones[j].goalNum]['milestones'].length+
                 '</p><br />' +
     			'<p class="event-description" id = "' +  dayMilestones[j]._id+
-    			'"><span class="glyphicon glyphicon-ok"></span >&nbsp;&nbsp;'+ dayMilestones[j].name + '</p>' +
+    			'"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;'+ dayMilestones[j].name + '</p>' +
     			'</div>';
 		}
 		string = '<div class = "day">' + string  + '</div>';
-		// if(i == milestones.length)
-		// 	if(goalname == ''){
-		// 		string += '<div class="event event-incomplete event-add">'+
-  //               	'<p class="event-description"><a href="/choose-goal" class="add-milestone">Plan Milestone</a></p>'+
-  //               	'</div>';
-  //           }
-  //           else{
-  //           	string += '<div class="event event-incomplete event-add">' +
-  //               	'<p class="event-description"><a href="/add-milestone/' + goalname + '"class="add-milestone">Plan Milestone</a></p>'+
-  //               	'</div>';	
-  //       }
    		timeline.append(string);
 	}
 
-	$('.glyphicon-ok').click(function(e){
-		$(this).toggleClass("black");
-	})
-
+	// $('.glyphicon-ok').click(function(e){
+	// 	$(this).toggleClass("black");
+	// });
 
 	console.log(milestones);
 }
@@ -260,7 +245,6 @@ function makeGoalHeader(results, goalnum){
         // '</p><a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a><a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a></div>';
 
         $(".goal-header").append(string);
-
 }
 
 
@@ -337,6 +321,7 @@ function addGoalFunction(e){
 		console.log(status);
 		window.location.href = "/";
 	});		
+	//window.location.href = "/";
 };
 
 function addMilestonePost(e){

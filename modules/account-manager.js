@@ -4,7 +4,7 @@ var Server 		= require('mongodb').Server;
 //var moment 		= require('moment');
 
 var dbPort 		= 27017;
-var dbHost 		= 'localhost';
+var dbHost 		= process.env.MONGOLAB_URI||'localhost';
 var dbName 		= 'node-login';
 //var data = require('../login.json');
 var models = require('../models');
