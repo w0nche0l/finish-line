@@ -19,7 +19,7 @@ var dbHost 		= process.env.MONGOLAB_URI||local_database_uri;
 var db;
 //var db = new mongo(dbHost);
 if(process.env.MONGOLAB_URI){
-	var db = new MongoDB.connect(dbHost);
+	var db = mongo.connect(dbHost);
 }
 else{
 	db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
