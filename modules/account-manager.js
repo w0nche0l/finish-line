@@ -15,7 +15,7 @@ var dbName 		= 'heroku_app22389483';
 var models = require('../models');
 /* establish the database connection */
 
-var db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
+var db = new MongoDB(dbName, new Server(dbHost, {auto_reconnect: true}), {w: 1});
 	db.open(function(e, d){
 	if (e) {
 		console.log(e);
