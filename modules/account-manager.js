@@ -3,6 +3,8 @@ var MongoDB 	= require('mongodb').Db;
 var Server 		= require('mongodb').Server;
 var mongo = require('mongodb');
 var models = require('../models');
+var MongoClient = require('mongodb').MongoClient;
+
 //var moment 		= require('moment');
 
 // var dbPort 		= 27017;
@@ -19,7 +21,7 @@ var dbHost 		= process.env.MONGOLAB_URI||local_database_uri;
 var db;
 //var db = new mongo(dbHost);
 if(process.env.MONGOLAB_URI){
-	var db = mongo.connect(dbHost);
+	var db = MongoClient.connect(dbHost);
 }
 else{
 	db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
