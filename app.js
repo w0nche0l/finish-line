@@ -12,11 +12,14 @@ var handlebars = require('express3-handlebars');
 //mongodb stuff
 var mongoose = require('mongoose');
 var db = mongoose.connection;
-db.on('error', console.error);
+db.on('error', console.error);/*
 var local_database_name = 'milestone';
-var local_database_uri  = 'mongodb://localhost/' + local_database_name
-var database_uri = process.env.MONGOLAB_URI || local_database_uri
-mongoose.connect(database_uri);
+var local_database_uri  = 'mongodb://localhost/' + local_database_name;
+var database_uri = process.env.MONGOLAB_URI || local_database_uri;*/
+// local database
+// mongoose.connect(database_uri);
+// production database
+mongoose.connect('mongodb://heroku_app22389483:olvu5pv1ll0r0i5s6nkn7kfmma@ds033629.mongolab.com:33629/heroku_app22389483');
 
 
 
