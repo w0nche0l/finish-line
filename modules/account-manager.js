@@ -9,21 +9,24 @@ var Server 		= require('mongodb').Server;
 
 var dbPort 		= 27017;
 var dbHost 		= process.env.MONGOLAB_URI||'localhost';
-var dbName 		= 'loginserver';
+var dbName 		= 'heroku_app22389483';
 
 //var data = require('../login.json');
 var models = require('../models');
 /* establish the database connection */
 
-var db = new MongoDB(dbName, new Server(dbHost, {auto_reconnect: true}), {w: 1});
-	db.open(function(e, d){
-	if (e) {
-		console.log('logindatabaseerror!');
-		console.log(e);
-	}	else{
-		console.log('connected to database :: ' + dbName);
-	}
-});
+
+var connection = new Mongo(dbName);
+var db= connection.getDB('heroku_app22389483');
+// var db = new MongoDB(dbName, new Server(dbHost, {auto_reconnect: true}), {w: 1});
+// 	db.open(function(e, d){
+// 	if (e) {
+// 		console.log('logindatabaseerror!');
+// 		console.log(e);
+// 	}	else{
+// 		console.log('connected to database :: ' + dbName);
+// 	}
+// });
 var accounts = db.collection('accounts');
 
 /* login validation methods */
