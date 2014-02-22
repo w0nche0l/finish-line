@@ -9,7 +9,7 @@ var Server 		= require('mongodb').Server;
 
 var dbPort 		= 27017;
 var dbHost 		= process.env.MONGOLAB_URI||'localhost';
-var dbName 		= 'heroku_app22389483';
+var dbName 		= 'loginserver';
 
 //var data = require('../login.json');
 var models = require('../models');
@@ -18,6 +18,7 @@ var models = require('../models');
 var db = new MongoDB(dbName, new Server(dbHost, {auto_reconnect: true}), {w: 1});
 	db.open(function(e, d){
 	if (e) {
+		console.log('logindatabaseerror!');
 		console.log(e);
 	}	else{
 		console.log('connected to database :: ' + dbName);
