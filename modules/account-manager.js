@@ -1,6 +1,8 @@
 var crypto 		= require('crypto');
 var MongoDB 	= require('mongodb').Db;
 var Server 		= require('mongodb').Server;
+var mongo = require('mongodb');
+var models = require('../models');
 //var moment 		= require('moment');
 
 // var dbPort 		= 27017;
@@ -8,25 +10,28 @@ var Server 		= require('mongodb').Server;
 // var dbName 		= 'node-login';
 
 var dbPort 		= 27017;
-var dbHost 		= process.env.MONGOLAB_URI||'localhost';
-var dbName 		= 'heroku_app22389483';
-
+var dbName 		= 'milestone';
+var local_database_uri  = 'localhost';
+var dbHost 		= process.env.MONGOLAB_URI||local_database_uri;
 //var data = require('../login.json');
-var models = require('../models');
+
 /* establish the database connection */
-
-
-var connection = new Mongo(dbName);
-var db= connection.getDB('heroku_app22389483');
-// var db = new MongoDB(dbName, new Server(dbHost, {auto_reconnect: true}), {w: 1});
-// 	db.open(function(e, d){
-// 	if (e) {
-// 		console.log('logindatabaseerror!');
-// 		console.log(e);
-// 	}	else{
-// 		console.log('connected to database :: ' + dbName);
-// 	}
-// });
+var db;
+//var db = new mongo(dbHost);
+if(process.env.MONGOLAB_URI){
+	var db = new mongo(dbHost);
+}
+else{
+	db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
+		db.open(function(e, d){
+		if (e) {
+			console.log('logindatabaseerror!');
+			console.log(e);
+		}	else{
+			console.log('connected to database :: ' + dbName);
+		}
+	});
+}
 var accounts = db.collection('accounts');
 
 /* login validation methods */
