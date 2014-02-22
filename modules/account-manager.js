@@ -22,7 +22,7 @@ var db;
 var accounts;
 //var db = new mongo(dbHost);
 if(process.env.MONGOLAB_URI){
-	var db = MongoClient.connect(dbHost, function (err,db){
+	db = MongoClient.connect(dbHost, function (err,db){
 		accounts = db.collection('accounts');
 	});
 }
