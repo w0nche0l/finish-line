@@ -38,7 +38,6 @@ else{
 		}
 	});
 }
-var accounts = db.collection('accounts');
 
 /* login validation methods */
 
