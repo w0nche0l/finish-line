@@ -19,9 +19,12 @@ var dbHost 		= process.env.MONGOLAB_URI||local_database_uri;
 
 /* establish the database connection */
 var db;
+var accounts;
 //var db = new mongo(dbHost);
 if(process.env.MONGOLAB_URI){
-	var db = MongoClient.connect(dbHost);
+	var db = MongoClient.connect(dbHost, function (err,db){
+		accounts = db.collection('accounts');
+	});
 }
 else{
 	db = new MongoDB(dbName, new Server(dbHost, dbPort, {auto_reconnect: true}), {w: 1});
@@ -31,6 +34,7 @@ else{
 			console.log(e);
 		}	else{
 			console.log('connected to database :: ' + dbName);
+			accounts = db.collection('accounts');
 		}
 	});
 }
