@@ -68,9 +68,6 @@ exports.getUserData = function(req,res, callback){
 
 
 exports.addGoal = function(req, res) {
-  //var form_data = req.body;
-  //console.log(form_data);
-  // make a new Project and save it to the DB
   // YOU MUST send an OK response w/ res.send();
   console.log(req.param('name'));
   console.log(req.cookies.user);
@@ -92,10 +89,6 @@ exports.addGoal = function(req, res) {
 
 
 exports.addMilestone = function(req, res,callback) {
-  //var form_data = req.body;
-  //console.log(form_data);
-  // make a new Project and save it to the DB
-  // YOU MUST send an OK response w/ res.send();
   console.log(req.param('name') + " goal" + req.param('goal'));
   var newMilestone = new models.Milestone({
     "name":req.param('name'), 
@@ -117,15 +110,15 @@ exports.addMilestone = function(req, res,callback) {
 
 /*
 	POST request for deleting a specific goal
+	currently unused
 */
 
 exports.deleteGoal = function(req,res){
 	console.log('trying to delete');
-
-
 	//var project = models.User.find({"username":req.cookies.user, goals : {$elemMatch: {_id: ObjectId(req.id)}}).remove().exec(afterQuery);
-	models.User.find({"username": req.cookies.user, 'goals._id': req.goalid}).remove().exec(afterQuery);
-	models.User.update({"username": req.cookies.user, "goals._id": req.goalid}, {$pull : { goals : {"_id": ObjectId(req.goalid)} } });
+	models.User.find({"username": req.cookies.user, 'goals._id': req.param('goalid')}).remove().exec(afterQuery);
+	models.User.update({"username": req.cookies.user, "goals._id": req.param('goalid')}, 
+		{$pull : { goals : {"_id": ObjectId(req.param('goalid'))} } });
 	console.log('done');
 	//models.User.update({$pull : { r : {"_id": ObjectId(req.id)} } }, false, afterQuery);
 	function afterQuery(err, projects) {
@@ -138,15 +131,61 @@ exports.deleteGoal = function(req,res){
 
 exports.toggleMilestone = function(req,res){
 	console.log('trying to toggle');
-	var milestonename = req.mlname;
-	var milestoneid = req.mlid;
+	var milestonename = req.param('milestonename');
+	var milestoneid = req.param('milestoneid');
+	var goalname = req.param('goalname');
+	var newmilestonestatus = new Boolean(req.param('milestonestatus'));
+	console.log('looking for' + milestonename);
+	// var user = models.User.find({'username':req.cookies.user, 
+	// 	'goals.milestone.id': milestonename, 'goals.milestone.name' : milestoneid});
+	// 	user.exec(function(e, data){
+	// 		console.log(e);
+	// 		console.log(data);
+	// 		res.send(data);
+	// });
+	console.log('goal:' + goalname);
+	console.log('setting this to ' + newmilestonestatus);
+	models.User.findOne({'username':req.cookies.user}, function(err, user){
+		console.log(user);
+		for(var i = 0; i < user.goals.length; ++i){
+			if(user.goals[i].name == goalname){
+				console.log(user.goals[i]);
+				for(var j = 0; j < user.goals[i].milestones.length; ++j){
 
-	models.User.update({'username':req.cookies.user, 'goals.milestone.id': mlid, 'goals.milestone.name' : mlname}, {'$set': {
-    	'goals.$.$.completed': 'true'
-	}}, function(err, projects){
-		console.log(err);
-		res.send(projects, 200);
+					if(user.goals[i].milestones[j].name == milestonename){
+						console.log(user.goals[i].milestones[j].completed);
+						user.goals[i].milestones[j].completed = !user.goals[i].milestones[j].completed;
+					}
+				}
+			}
+		}
+
+		user.save(function(err){
+			if(err){
+				console.log(err);
+				res.send(null, 400);
+			}
+			else
+				res.send(null,200);
+		})
+
 	});
+
+
+
+	// models.User.update({'username':req.cookies.user, 'goals.name': goalname, 'goals.$.milestones.name' : milestonename}, 
+	// 	{$set: {'goals.$.milestones.$.completed': newmilestonestatus}}, 
+	// 	function(err, projects){
+	// 	if(!err){
+	// 		console.log(projects);
+	// 		res.send(projects, 200);
+	// 	}
+	// 	else{
+	// 		console.log(projects);
+	// 		console.log(err);
+	// 		res.send(null, 400);
+	// 	}
+	// });
 };
 
 

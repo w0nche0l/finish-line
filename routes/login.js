@@ -39,14 +39,12 @@ exports.loginPost =  function(req, res){
 				res.cookie('pass', o.pass, { maxAge: 900000 });
 			}
 			res.send(o, 200);
-			res.redirect('/homescreen');
 		}
 	});
 };
 
 
 exports.signUpView = function(req, res){
-	//console.log(login);
 	res.render('signup', login);
 };
 

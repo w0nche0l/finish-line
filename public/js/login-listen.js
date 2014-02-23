@@ -43,7 +43,6 @@ function gotMilestones(result){
 	}
 	console.log(realgoal);
 	for(var i = 0; i < realgoal.milestones.length; ++i){
-
 		milestoneList.append('<button type="button" class="btn btn-default">' + realgoal.milestones[i].name+'</button>')
 	}
 
@@ -101,7 +100,9 @@ function gotEvents(result){
 	var timeline = $('.timeline-wrapper');
 
 	if(result[0] == undefined || result[0].goals.length ==0){
-		$('.goal-header').remove();
+		$('.goal-header').remove();	
+		$('#btn-add').remove();
+		console.log('nothing to show');
 		return;
 	}
 	else{
@@ -115,9 +116,9 @@ function gotEvents(result){
 	
 	var goalname = $('#goal-name-hack').html();
 	console.log(goalname);
+	var realgolnum;
 	if(goalname != ''){
 		var realgoal ;
-		var realgolnum;
 		for(var i = 0 ; i < goals.length; ++i){
 			if(goals[i].name == goalname){
 				realgoal = goals[i];
@@ -193,9 +194,41 @@ function gotEvents(result){
    		timeline.append(string);
 	}
 
-	// $('.glyphicon-ok').click(function(e){
-	// 	$(this).toggleClass("black");
-	// });
+	$('.glyphicon-ok').click(function(e){
+		$(this).toggleClass("black");
+		var id = $(this).parent().attr('id');
+		var goalname = $(this).parent().parent().find('p.event-complete-time').text();
+
+		var goalnum= 0;
+		for(; goalnum < result[0].goals.length; goalnum++){
+			if(result[0].goals[goalnum].name == goalname)
+				break;
+		}
+
+		var milestonestatus;
+		var milestonename;
+		for(var i = 0; i < result[0].goals[goalnum].milestones.length; ++i){
+			if(result[0].goals[goalnum].milestones[i]._id == id){
+				milestonestatus = result[0].goals[goalnum].milestones[i].completed;
+				milestonename =result[0].goals[goalnum].milestones[i].name;
+			}
+		}
+
+		console.log("switching from " + milestonestatus + " to " + !milestonestatus);
+
+		var callback = function(data, status){
+			if(status =='success'){
+				console.log(data);
+				$.get('/data', function(res){
+					console.log(res);
+					countGoals(res, realgolnum);
+				});
+			}
+		};
+
+		$.post('/milestoneupdate', {'milestonestatus' : !milestonestatus, 'milestonename': milestonename, 'milestoneid':id, 'goalname': goalname}
+			, callback);
+	});
 
 	console.log(milestones);
 }
@@ -203,6 +236,36 @@ function gotEvents(result){
 function dateComp(a,b){
 	return new Date(a.actualDate)-new Date(b.actualDate);
 }
+
+function countGoals(results, goalnum){
+	var smallnum =0;
+	var bignum =0; 
+	var goalname;
+	var object = results[0];
+	console.log('number is' + goalnum);
+	if(goalnum != undefined){
+		var goal = object['goals'][goalnum];
+		goalname = goal.name;
+		for(var i = 0 ; i < goal.milestones.length; ++i)
+			if(goal.milestones[i].completed)
+				smallnum++;
+		bignum = goal.milestones.length;
+	}
+	else{
+		goalname = "All Goals";
+		for(var i = 0; i < object['goals'].length; ++i){
+			var goal = object['goals'][i];
+			for(var j = 0 ; j< goal.milestones.length; ++j)
+				if(goal.milestones[j].completed)
+					smallnum++;
+			bignum += goal.milestones.length
+		}
+	}
+	
+	var percent = smallnum/bignum*100  + "%";
+	$("#meter-span").width(percent)
+}
+
 
 function makeGoalHeader(results, goalnum){
 	var smallnum =0;
@@ -240,9 +303,9 @@ function makeGoalHeader(results, goalnum){
 
         string += '<span class="num-milestones">'+  smallnum + ' of '+ bignum + ' milestones completed</span>'+
            '<div class="meter">'+
-                '<span style="width: ' + smallnum/bignum*100 + '%"></span>'+
-             '</div>'//+
-        // '</p><a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a><a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a></div>';
+                '<span id = "meter-span"style="width: ' + smallnum/bignum*100 + '%"></span>'+
+             '</div>' +
+         '</p></div>';
 
         $(".goal-header").append(string);
 }
