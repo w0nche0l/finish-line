@@ -336,7 +336,7 @@ function signupFunction(e){
 		"email" : $('#email').val(),
 		"pass": $('#password').val()
 	}, function(data, status){
-		if(status == 'ok'){
+		if(status == 'success'){
 			$.post('/', {
 				"user": $('#name').val(),
 				"pass": $('#password').val(),
