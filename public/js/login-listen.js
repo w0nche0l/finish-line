@@ -349,11 +349,12 @@ function signupFunction(e){
 			});
 		}
 		else{
+			window.location.href = "/";
 			console.log(data);
 		}
 		
 	});
-	$.get('/');
+	// $.get('/');
 };
 
 
