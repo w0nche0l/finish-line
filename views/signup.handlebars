@@ -26,11 +26,13 @@
   <body>
   	<div class = "container">
   		<div class="login-header">
-  			<h1>milestone</h1>
+  			<h1><a href="/">milestone</a></h1>
   			<h2>reaching your goals, step by step</h2>
   		</div>
 
   		<form id="login-box" role="form" method="get" action="/homescreen">
+        <div class="alert alert-danger">Username already taken.</div>
+
         <div class="alert alert-danger">Warning: This login system is not yet secure.<br/> Avoid using passwords that you use for other accounts.</div>
   			<div class="form-group">
           <input type="text" class="form-control" id="name" placeholder="First Name" name="name">
