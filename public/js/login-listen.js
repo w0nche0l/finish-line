@@ -329,7 +329,6 @@ function loginFunction(e){
 
 function signupFunction(e){
 	e.preventDefault();
-	//replace this with actual login information
 	console.log('signingup');
 	$.post('/signup', {
 		"name": $('#name').val(),
@@ -337,7 +336,7 @@ function signupFunction(e){
 		"email" : $('#email').val(),
 		"pass": $('#password').val()
 	}, function(data, status){
-		if(data == 'ok'){
+		if(status == 'ok'){
 			$.post('/', {
 				"user": $('#name').val(),
 				"pass": $('#password').val(),
@@ -349,10 +348,10 @@ function signupFunction(e){
 			});
 		}
 		else{
-			window.location.href = "/";
+			alert(status);
 			console.log(data);
 		}
-		
+		window.location.href = "/";
 	});
 	// $.get('/');
 };
