@@ -1,4 +1,6 @@
 
+var goalslist;
+
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
 
@@ -20,7 +22,7 @@ $(document).ready(function() {
 	addGoals($('#goal-list'));
 	$('.datepicker').datepicker();
 
-	setUp()
+	setUpAdders();
 	//getMilestones();
 })
 
@@ -34,6 +36,7 @@ function addMilestones(e){
 }
 
 function gotMilestones(result){
+
 	var milestoneList = $('.milestone-list');
 	console.log(result);
 	var goalname = $('#goal-name-hack').html();
@@ -100,11 +103,16 @@ function addEvents(e){
 
 function gotEvents(result){
 
+	goalslist = result[0].goals;
+	console.log('goallist');
+	console.log(goalslist);
+
 	var timeline = $('.timeline-wrapper');
 
+	$('#btn-add').remove();
 	if(result[0] == undefined || result[0].goals.length ==0){
 		$('.goal-header').remove();	
-		$('#btn-add').remove();
+		$('.add-event').remove();
 		console.log('nothing to show');
 		return;
 	}
@@ -512,4 +520,145 @@ function getMilestones(){
 	$.post('/addgoal', {},  
 		function(data, status){
 	});
+}
+
+function setUpAdders(){
+	
+	$('.add-event').click(goForward);
+
+	function fillWithEvent1(e){
+		var parent = $(e);
+		parent.toggleClass("status1");
+		parent.toggleClass("status2");
+		parent.html('<p class="add-event-description">Add New Milestone</p>');
+		parent.unbind();
+		parent.removeClass("status2");
+		parent.removeClass("status3");
+		parent.addClass("status1");
+		parent.click(goForward);
+	};
+
+	function fillWithEvent2(e){
+		var div = $(e);
+		console.log('fwe2');
+		if(getGoalName() != ""){
+			fillWithEvent3(e);
+			return;
+		}
+
+		
+		var newdata = '<p class="add-event-header">' +
+            '<span class="btn-left-mini"><span class="glyphicon glyphicon-remove"></span></span>'+
+            'Pick a goal to add a milestone to:'+
+            '<span class="btn-right-mini"><span class="glyphicon glyphicon-chevron-right"></span></span>'+
+        '</p>'+
+        '<div class="select">'+
+        '<select id = "goalselect">';
+        for(var i = 0 ; i < goalslist.length; ++i){
+        	newdata += '<option>' + goalslist[i].name + '</option>';
+        }
+       	// getGoalsOptions();
+        newdata+='</select>';
+		div.html(newdata);
+		div.removeClass("status1");
+		div.removeClass("status3");
+		div.addClass("status2");
+		div.unbind();
+		div.children('.add-event-header').children('.btn-left-mini').click(goBack);
+		div.children('.add-event-header').children('.btn-right-mini').click(goForward);
+		console.log('event2');
+	};
+
+	function fillWithEvent3(e){
+		var div = $(e);
+		
+		var goalname = getGoalName();
+		if(goalname == ""){
+			goalname = div.children('.select').children('#goalselect').children('option:selected').text();
+		}
+		console.log(goalname);
+
+		var newdata =  '<p class="add-event-header" id ="'+goalname+'">' + 
+            '<span class="btn-left-mini"><span class="glyphicon glyphicon-arrow-left"></span></span>'+
+            'Add Milestone for '+ goalname +
+            '<span class="btn-right-mini"><span class="glyphicon glyphicon-ok"></span></span>'+
+        	'</p>'+
+        '<div class="form-group">'+
+            '<input type="text" class="form-control" id="name" placeholder="Milestone description" name="name">'+
+            '<input type="text" class="form-control datepicker" id="date" placeholder="Due date" name="password">'+
+        '</div>';
+
+        console.log(div.html());
+        div.html(newdata);
+        $('.datepicker').datepicker();
+        div.removeClass('status1 status2');
+        div.addClass('status3');
+        div.unbind();
+        div.children('.add-event-header').children('.btn-left-mini').click(goBack);
+		div.children('.add-event-header').children('.btn-right-mini').click(goForward);
+	};
+
+	function submitThis(e){
+		var div = $(e);		
+		console.log('trying to add milestone');
+		console.log({
+			"name" :  $('#name').val(), 
+			"date": $('#date').val(),
+			"goal": $('.add-event-header').attr('id')
+		});
+		$.post('/addmilestonepost', {
+			"name" :  $('#name').val(), 
+			"date": $('#date').val(),
+			"goal": $('.add-event-header').attr('id')
+		}, function(data, status){
+			console.log(data);
+			console.log(status);
+			window.location.href = "/";
+		});
+		
+	}
+
+	function goForward(e){
+		if($(this).hasClass('status1') &&  getGoalName() == ""){
+			fillWithEvent2($(this));
+			return false;
+		}
+		else if($(this).hasClass('status1') &&  getGoalName() != ""){
+			fillWithEvent3($(this));
+			return false;
+		}
+
+
+		console.log('forwarding');
+		if($(this).parent().parent().hasClass('status2')){
+			console.log('front3');
+			fillWithEvent3($(this).parent().parent());
+			return false;
+		}
+		else if($(this).parent().parent().hasClass('status3')){
+			console.log('front,add,back1');
+			submitThis($(this).parent().parent());
+			//window.location.href = "/homescreen";
+			//fillWithEvent1($(this).parent().parent());
+			return false;
+		}
+	};
+
+	function goBack(e){
+		console.log('backing');
+		if($(this).parent().parent().hasClass('status2') || getGoalName() != ""){
+			console.log('back1');
+			fillWithEvent1($(this).parent().parent());
+			return false;
+		}
+		else if($(this).parent().parent().hasClass('status3')){
+			console.log('back2');
+			fillWithEvent2($(this).parent().parent());
+			return false;
+		}
+	};
+}
+
+function getGoalName(){
+	return $("#goal-name-hack").text();
 }
