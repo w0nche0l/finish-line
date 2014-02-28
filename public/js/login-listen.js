@@ -174,13 +174,25 @@ function gotEvents(result){
 
 		var string = '<h2 class="date">'+ date.toDateString() + ' </h2>'
 		for(var j = 0; j < dayMilestones.length; ++j){
-			if(dayMilestones[j].actualDate > Date.now()){
-				string+= '<div class = "event event-incomplete">';
-				string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+			if(dayMilestones[j].actualDate > Date.now()){//future
+				if(dayMilestones[j].completed){
+					string+= '<div class = "event event-future">';
+					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+				}
+				else{
+					string+= '<div class = "event event-incomplete event-future">';
+					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+				}
 			}
-			else{
-				string+= '<div class = "event">';
-				string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+			else{//past
+				if(dayMilestones[j].completed){
+					string+= '<div class = "event event-past">';
+					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+				}
+				else{
+					string+= '<div class = "event event-overdue event-past">';
+					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';	
+				}
 			}
 			string+=
                 '<p class="milestone-progress">' +
@@ -199,6 +211,30 @@ function gotEvents(result){
 	}
 
 	function clickedCheck(e){
+		var removing;
+		if($(this).hasClass("glyphicon-check")){
+			removing = true;
+		}
+		else
+			removing = false;
+
+		var string = $('.num-milestones').text();
+		var strarray = string.split(' ');
+		var first = parseInt(strarray[0]);
+		if(removing)
+			first--;
+		else
+			first++;
+
+		var newstring = "";
+		newstring += first;
+		for(var i = 1; i < strarray.length; ++i){
+			newstring += " " ;
+			newstring += strarray[i];
+		}
+
+		$('.num-milestones').text(newstring);
+		
 
 		$(this).toggleClass("glyphicon-check");
 		$(this).toggleClass("glyphicon-unchecked");
@@ -213,12 +249,33 @@ function gotEvents(result){
 
 		var milestonestatus;
 		var milestonename;
+		var ms;
 		for(var i = 0; i < result[0].goals[goalnum].milestones.length; ++i){
 			if(result[0].goals[goalnum].milestones[i]._id == id){
-				milestonestatus = result[0].goals[goalnum].milestones[i].completed;
-				milestonename =result[0].goals[goalnum].milestones[i].name;
+				ms = result[0].goals[goalnum].milestones[i];
+				milestonestatus = ms.completed;
+				milestonename = ms.name;
+				break;
 			}
 		}
+
+
+		var parentDiv = $(this).parent().parent();
+		if(removing){
+			if(parentDiv.hasClass('event-past'))
+				parentDiv.toggleClass('event-overdue');
+			if(parentDiv.hasClass('event-future'))
+				parentDiv.toggleClass('event-incomplete');
+		}
+		else{//checking off
+			if(parentDiv.hasClass('event-overdue'))
+				parentDiv.toggleClass('event-overdue');
+			if(parentDiv.hasClass('event-incomplete'))
+				parentDiv.toggleClass('event-incomplete');
+		}
+
+
+		
 
 		console.log("switching from " + milestonestatus + " to " + !milestonestatus);
 
