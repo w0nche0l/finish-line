@@ -43,7 +43,6 @@ exports.loginPost =  function(req, res){
 	});
 };
 
-
 exports.signUpView = function(req, res){
 	res.render('signup', login);
 };
