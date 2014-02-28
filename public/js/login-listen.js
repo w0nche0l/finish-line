@@ -19,6 +19,8 @@ $(document).ready(function() {
 	addMilestones($('.milestone-list'));
 	addGoals($('#goal-list'));
 	$('.datepicker').datepicker();
+
+	setUp()
 	//getMilestones();
 })
 
