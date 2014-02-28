@@ -99,6 +99,10 @@ body {
 	margin: 8pt 0pt 4pt 0pt;
 }
 
+.event-overdue {
+	background-color: #a61313;
+}
+
 .event-incomplete {
 	background-color: #347edb;
 }
