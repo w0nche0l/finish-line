@@ -15,8 +15,8 @@ $(document).ready(function() {
 	$('#submit-milestone-btn').click(addMilestonePost);
 	//$('#submit-btn').click(cancelFunction);
 	console.log('blah');
-	addMilestones($('.milestone-list'));
 	addEvents($('.timeline-wrapper'));
+	addMilestones($('.milestone-list'));
 	addGoals($('#goal-list'));
 	//getMilestones();
 })
