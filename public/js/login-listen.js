@@ -186,16 +186,22 @@ function gotEvents(result){
                 '<p class="milestone-progress">' +
                 	(dayMilestones[j].milestoneNum+1) + '/'+goals[dayMilestones[j].goalNum]['milestones'].length+
                 '</p><br />' +
-    			'<p class="event-description" id = "' +  dayMilestones[j]._id+
-    			'"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;'+ dayMilestones[j].name + '</p>' +
+    			'<p class="event-description" id = "' +  dayMilestones[j]._id;
+			if(dayMilestones[j].completed)
+				string +='"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;';
+			else
+				string +='"><span class="glyphicon glyphicon-unchecked"></span>&nbsp;&nbsp;';
+    		string += dayMilestones[j].name + '</p>' +
     			'</div>';
 		}
 		string = '<div class = "day">' + string  + '</div>';
    		timeline.append(string);
 	}
 
-	$('.glyphicon-ok').click(function(e){
-		$(this).toggleClass("black");
+	function clickedCheck(e){
+
+		$(this).toggleClass("glyphicon-check");
+		$(this).toggleClass("glyphicon-unchecked");
 		var id = $(this).parent().attr('id');
 		var goalname = $(this).parent().parent().find('p.event-complete-time').text();
 
@@ -228,7 +234,10 @@ function gotEvents(result){
 
 		$.post('/milestoneupdate', {'milestonestatus' : !milestonestatus, 'milestonename': milestonename, 'milestoneid':id, 'goalname': goalname}
 			, callback);
-	});
+	};
+
+	$('.glyphicon-check').click(clickedCheck);
+	$('.glyphicon-unchecked').click(clickedCheck);
 
 	console.log(milestones);
 }
