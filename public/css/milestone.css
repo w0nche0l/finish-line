@@ -230,6 +230,11 @@ from {width: 0;}
 	font-weight: lighter;
 }
 
+.login-header h1 a {
+	color: #00588b;
+	text-decoration: none;
+}
+
 .login-header h2 {
 	margin-top: 0px;
 	font-size: 12pt;
