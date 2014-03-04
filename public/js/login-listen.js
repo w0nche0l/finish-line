@@ -477,6 +477,7 @@ function addMilestonePost(e){
 	}, function(data, status){
 		console.log(data);
 		console.log(status);
+		ga('send', 'timing', 'jQuery', 'addedMilestone', new Date().getTime(), 'Google CDN');
 		window.location.href = "/";
 	});
 	
@@ -500,10 +501,12 @@ function addFunction(e){
 
 function addMilestoneFunction(e){
 	e.preventDefault();
+
 	$.post('/setTime', {"startTime": new Date().getTime()}, function(data,status){
 		console.log(data);
 		console.log(status);
 	});
+	ga('send', 'timing', 'jQuery', 'startAdd', new Date().getTime(), 'Google CDN');
 	if($('#goal-name-hack').html()){
 		window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
 	}
@@ -620,7 +623,7 @@ function setUpAdders(){
 			console.log(data);
 			console.log(status);
 			var endTime = new Date().getTime();
-			ga('send', 'timing', 'jQuery', 'addMilestone2', endTime-startTime, 'Google CDN')
+			ga('send', 'timing', 'jQuery', 'addMilestone2', endTime-startTime, 'Google CDN');
 			window.location.href = "/";
 		});
 		
