@@ -500,16 +500,15 @@ function addFunction(e){
 
 function addMilestoneFunction(e){
 	e.preventDefault();
-	$.post('/setTime', {startTime: new Date().getTime()}, function(data,status){
+	$.post('/setTime', {"startTime": new Date().getTime()}, function(data,status){
 		console.log(data);
 		console.log(status);
-		if($('#goal-name-hack').html()){
-			window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
-		}
-		else
-			window.location.href= '/choose-goal';
 	});
-	
+	if($('#goal-name-hack').html()){
+		window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
+	}
+	else
+		window.location.href= '/choose-goal';
 }
 
 
