@@ -477,7 +477,12 @@ function addMilestonePost(e){
 	}, function(data, status){
 		console.log(data);
 		console.log(status);
-		ga('send', 'timing', 'jQuery', 'addedMilestone', new Date().getTime(), 'Google CDN');
+		ga("send", "event", "ms", "add");
+		ga('send', 'timing', 'jQuery', 'Milestone1Add', new Date().getTime(), 'Google CDN');
+		$.post('/addEvent', {
+				"type": 'addmilestone1',		
+				"val" : new Date().getTime()
+			});
 		window.location.href = "/";
 	});
 	
@@ -506,7 +511,13 @@ function addMilestoneFunction(e){
 		console.log(data);
 		console.log(status);
 	});
-	ga('send', 'timing', 'jQuery', 'startAdd', new Date().getTime(), 'Google CDN');
+	ga("send", "event", "ms", "startadd");
+	ga('send', 'timing', 'jQuery', 'Milestone1Start', new Date().getTime(), 'Google CDN');
+	$.post('/addEvent', {
+		"type": 'milestone1start',		
+		"val" : new Date().getTime()
+	});
+
 	if($('#goal-name-hack').html()){
 		window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
 	}
@@ -623,7 +634,12 @@ function setUpAdders(){
 			console.log(data);
 			console.log(status);
 			var endTime = new Date().getTime();
+			ga("send", "event", "ms", "add2");
 			ga('send', 'timing', 'jQuery', 'addMilestone2', endTime-startTime, 'Google CDN');
+			$.post('/addEvent', {
+				"type": 'addmilestone2',		
+				"val" : endTime-startTime
+			});
 			window.location.href = "/";
 		});
 		

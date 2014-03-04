@@ -200,3 +200,16 @@ exports.getData = function(req, res) {
 			res.send(data);
 	});
 };
+
+exports.addEvent = function(req,res){
+	console.log(req.param('name'));
+  	console.log(req.cookies.user);
+  	var newEvent = new models.Event({
+		"eventType":req.param('type'),
+		"eventTime": new Date(),
+		"user":req.cookies.user,
+		"eventValue" : req.param('val')
+  	});
+  	newEvent.save();
+
+};
