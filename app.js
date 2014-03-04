@@ -88,6 +88,9 @@ app.post('/addmilestonepost', data.addMilestone);
 app.post('/delgoal', data.deleteGoal);
 app.post('/milestoneupdate', data.toggleMilestone);
 
+//experimental
+app.post('/setTime', addMilestone.timePost);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

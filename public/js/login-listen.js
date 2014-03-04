@@ -1,5 +1,6 @@
 
 var goalslist;
+var startTime = 0; 
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
@@ -109,8 +110,8 @@ function gotEvents(result){
 
 	var timeline = $('.timeline-wrapper');
 	var pathname = window.location.pathname;
-	if(pathname.indexOf("homescreen")>-1)
-		$('#btn-add').remove();
+	
+	// $('#btn-add').remove();
 	if(result[0] == undefined || result[0].goals.length ==0){
 		$('.goal-header').remove();	
 		$('.add-event').remove();
@@ -499,11 +500,16 @@ function addFunction(e){
 
 function addMilestoneFunction(e){
 	e.preventDefault();
-	if($('#goal-name-hack').html()){
-		window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
-	}
-	else
-		window.location.href= '/choose-goal';
+	$.post('/setTime', {startTime: new Date().getTime()}, function(data,status){
+		console.log(data);
+		console.log(status);
+		if($('#goal-name-hack').html()){
+			window.location.href= '/add-milestone/' + $('#goal-name-hack').html();
+		}
+		else
+			window.location.href= '/choose-goal';
+	});
+	
 }
 
 
@@ -614,6 +620,8 @@ function setUpAdders(){
 		}, function(data, status){
 			console.log(data);
 			console.log(status);
+			var endTime = new Date().getTime();
+			ga('send', 'timing', 'jQuery', 'addMilestone2', endTime-startTime, 'Google CDN')
 			window.location.href = "/";
 		});
 		
@@ -621,6 +629,7 @@ function setUpAdders(){
 
 	function goForward(e){
 		if($(this).hasClass('status1') &&  getGoalName() == ""){
+			startTime= new Date().getTime();
 			fillWithEvent2($(this));
 			return false;
 		}
