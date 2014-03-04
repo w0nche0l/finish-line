@@ -28,7 +28,7 @@ var UserSchema = new Mongoose.Schema({
   "goals":[GoalSchema]
 });
 
-var EventSchema  new Mongoose.Schema({
+var EventSchema  = new Mongoose.Schema({
   "eventType":String,
   "eventTime": Date,
   "user":String,
@@ -37,5 +37,5 @@ var EventSchema  new Mongoose.Schema({
 exports.Milestone = Mongoose.model('Milestone', MilestoneSchema);
 exports.Goal = Mongoose.model('Goal', GoalSchema);
 exports.User = Mongoose.model('User', UserSchema);
-
+exports.Event = Mongoose.model('Event', EventSchema);
 
