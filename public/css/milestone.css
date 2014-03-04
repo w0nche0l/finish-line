@@ -369,6 +369,10 @@ from {width: 0;}
 	display:none;
 }
 
+#test-hack {
+	display:none;
+}
+
 .black{
 	color: black;
 }

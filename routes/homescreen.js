@@ -17,10 +17,10 @@ exports.view = function(req, res){
 			if (o != null){
 			    req.session.user = o;
 			    var goalname =req.params.goalname;
-				res.render('homescreen', {'goalname': goalname});
+				res.render('homescreen', {test: 'false','goalname': goalname});
 				//res.redirect('/homescreen');
 			}	else{
-				res.render('login', { title: 'Hello - Please Login To Your Account' });
+				res.render('login', {  title: 'Hello - Please Login To Your Account' });
 			}
 		});
 	}
@@ -41,7 +41,7 @@ exports.altView = function(req,res){
 			if (o != null){
 			    req.session.user = o;
 			    var goalname =req.params.goalname;
-				res.render('home', {'goalname': goalname});
+				res.render('homescreen', {test:'true', 'goalname': goalname});
 				//res.redirect('/homescreen');
 			}	else{
 				res.render('login', { title: 'Hello - Please Login To Your Account' });

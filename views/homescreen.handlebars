@@ -25,10 +25,13 @@
           <h1 class="title">
             <span class="btn-left" id="btn-menu"><span class="glyphicon glyphicon-th-list"></span></span>
             Timeline
+            {{unless test}}
             <span class="btn-right" id="btn-add"><span class="glyphicon glyphicon-plus"></span></span>
+            {{/unless}}
         </h1>
     </nav>
     <div id="goal-name-hack">{{goalname}}</div>
+    <div id="test-hack">{{test}}</div>
 
     <div class="container help-wrapper">
         <h1 class="help">It looks like you don't have any goals! Press <span class="glyphicon glyphicon-th-list"></span> to go to the menu and add a new goal.</h1>
@@ -45,16 +48,18 @@
         </p>
         <a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a>
         <a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a>
-    </div> -->
+    </div> -->  
 </div>
 
 
 <div class="container timeline-wrapper">
 
     <!--initial state-->
+    {{#if test}}
     <div class="event add-event status1">
         <p class="add-event-description">Add New Milestone</p>
     </div>
+    {{/if}}
 
 </div>
 
