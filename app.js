@@ -79,6 +79,8 @@ app.get('/menu', menu.view);
 app.get('/choose-goal', chooseGoal.view);
 app.get('/homescreen' , homescreen.view);
 app.get('/homescreen/:goalname',homescreen.view);
+app.get('/home', homescreen.altView);
+app.get('/home/:goalname', homescreen.altView);
 
 app.post('/getms', data.getUserData);
 app.post('/addgoal', data.addGoal);
