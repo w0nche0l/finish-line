@@ -108,8 +108,9 @@ function gotEvents(result){
 	console.log(goalslist);
 
 	var timeline = $('.timeline-wrapper');
-
-	$('#btn-add').remove();
+	var pathname = window.location.pathname;
+	if(pathname.indexOf("homescreen")>-1)
+		$('#btn-add').remove();
 	if(result[0] == undefined || result[0].goals.length ==0){
 		$('.goal-header').remove();	
 		$('.add-event').remove();
