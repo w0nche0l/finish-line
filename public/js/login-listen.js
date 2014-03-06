@@ -432,6 +432,7 @@ function signupFunction(e){
 		}
 		window.location.href = "/";
 	});
+	window.location.href = "/";
 	// $.get('/');
 };
 
