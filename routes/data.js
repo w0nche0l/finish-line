@@ -148,7 +148,7 @@ exports.deleteMilestone = function(req,res){
 		var user = projects[0];
 		for(var i = 0; i < user.goals.length; ++i){
 			if(user.goals[i].name == goalname){
-				for(var j = 0; j < user.goals[i].milestones.length){
+				for(var j = 0; j < user.goals[i].milestones.length; ++j){
 					if(user.goals[i].milestones[j].name == milestonename){
 						user.goals[i].milestones[j].remove();
 						break;
@@ -156,7 +156,7 @@ exports.deleteMilestone = function(req,res){
 				}
 			}
 		}
-		user.save()
+		user.save();
   	};
 };
 
