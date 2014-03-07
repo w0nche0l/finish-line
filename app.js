@@ -87,6 +87,7 @@ app.post('/addgoal', data.addGoal);
 app.post('/addmilestonepost', data.addMilestone);
 app.post('/delgoal', data.deleteGoal);
 app.post('/milestoneupdate', data.toggleMilestone);
+app.post('/deletemilestonepost', data.deleteMilestone);
 
 //experimental
 app.post('/setTime', addMilestone.timePost);

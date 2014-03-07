@@ -127,8 +127,10 @@ function gotEvents(result){
 	console.log(goals);
 
 	var colors = getColors(goals.length);
-	for(var i = 0; i < goals; ++ i){
+	console.log(colors);
+	for(var i = 0; i < goals.length; ++ i){
 		goals[i].color = colors[i];
+		console.log(goals[i].color);
 	}
 
 	var milestones = new Array();
@@ -150,7 +152,7 @@ function gotEvents(result){
 		var milestonelist = realgoal.milestones;
 		for(var j = 0; j <milestonelist.length; ++j){
 			milestonelist[j].actualDate = new Date(milestonelist[j]['date']);
-			milestonelist[j].goalNum = realgolnum;
+			milestonelist[j].goalNum=  realgolnum;
 			milestonelist[j].milestoneNum = j;
 			milestones.push(milestonelist[j]);
 		}
@@ -212,9 +214,10 @@ function gotEvents(result){
 				}
 			}
 			string+=
-                '<p class="milestone-progress">' +
-                	(dayMilestones[j].milestoneNum+1) + '/'+goals[dayMilestones[j].goalNum]['milestones'].length+
-                '</p><br />' +
+                 '<p class="milestone-actions"><span class="milestone-delete">Delete</span>' +
+                 '&nbsp;&nbsp;&nbsp;&nbsp;<span class="milestone-edit-omg">'+
+                 //Edit+
+                 '</span></p><br/>' +
     			'<p class="event-description" id = "' +  dayMilestones[j]._id;
 			if(dayMilestones[j].completed)
 				string +='"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;';
@@ -226,7 +229,23 @@ function gotEvents(result){
 		string = '<div class = "day">' + string  + '</div>';
    		timeline.append(string);
 	}
+	console.log('styling goaldivs');
+	var goalDivs = $('p.event-complete-time');
+	for(var i = 0; i < goalDivs.length; ++i){
+		var goal;
+		for(var j = 0; j < goals.length; ++j){
+			console.log($(goalDivs[i]).text());
+			if(goals[j].name == $(goalDivs[i]).text()){
+				goal = goals[j];
+				break;
+			}
+		}
+		console.log(goal.color);
+		$(goalDivs[i]).parent().css({"border-left": "4px solid " + goal.color});
+	}
 
+
+	
 	function clickedCheck(e){
 		var removing;
 		if($(this).hasClass("glyphicon-check")){
@@ -314,6 +333,7 @@ function gotEvents(result){
 	$('.glyphicon-unchecked').click(clickedCheck);
 
 	console.log(milestones);
+	setUpDeletersAndEditors();
 }
 
 function dateComp(a,b){
@@ -325,6 +345,7 @@ function getColors(size){
 	for(var i = 0; i < size; ++i){
 		colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
 	}
+	return colors;
 }
 
 function countGoals(results, goalnum){
@@ -555,14 +576,31 @@ function getMilestones(){
 }
 
 function setUpDeletersAndEditors(){
+	console.log("asdlfkjasldfjalsdkfjasd");
+	$('.milestone-delete').click(deleteMilestone);
+	console.log($('.milestone-delete'));
+	$('.milestone-edit-omg').click(editMilestone);
 
-	$('.delete-event').click(deleteMilestone);
-	$('.edit-event').click(editMielstone);
+	function deleteMilestone(e){
+		var date  = $(this).parent().parent().parent().find('.date').text();
+		var name = $(this).parent().parent().find('.event-description').text();
+		var goal = $(this).parent().parent().find('.event-complete-time').text();
 
-	function deleteMilestone(thing){
-		var curr = $(thing);
-		var parent = curr.parent().parent();
+		console.log('deleting' + name + date);
 
+		$.post('/deletemilestonepost', {
+			'milestonename':$.trim(name),
+			'milestonedate':new Date(date),
+			'goalname':$.trim(goal)
+		}, function(data,status){
+			console.log(status);
+			window.location.href = "/";
+		});
+	}
+
+	function editMilestone(e){
+		e.preventDefault();
+		
 	}
 }
 
