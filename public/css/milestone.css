@@ -18,7 +18,6 @@ body {
 	margin-top: 60pt;
 }
 
-
 /* main app styles */
 
 .navbar {
@@ -148,6 +147,10 @@ body {
 	color: rgba(255, 255, 255, 0.7);
 }
 
+.of-goal {
+	border-left: 4px solid green;
+}
+
 .add-event {
 	background-color: #86c033;
 	color: white;
@@ -229,8 +232,8 @@ body {
 	float: right;
 }
 
-.meter { 
-	height: 12px; 
+.meter {
+	height: 12px;
 	position: relative;
 	background-color: #becbe0;
 	border-radius: 25px;

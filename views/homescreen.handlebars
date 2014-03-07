@@ -2,97 +2,99 @@
 
 <html>
 <head>
-        <!-- Google Analytics Content Experiment code -->
-    <script>function utmx_section(){}function utmx(){}(function(){var
+  <!-- Google Analytics Content Experiment code -->
+  <script>function utmx_section(){}function utmx(){}(function(){var
     k='82962057-2',d=document,l=d.location,c=d.cookie;
     if(l.search.indexOf('utm_expid='+k)>0)return;
     function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-    indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-    length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-    '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-    '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-    '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-    valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-    '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-    </script><script>utmx('url','A/B');</script>
-    <!-- End of Google Analytics Content Experiment code -->
+      indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+        length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+          '<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+          '://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+          '&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+          valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+          '" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+          </script><script>utmx('url','A/B');</script>
+          <!-- End of Google Analytics Content Experiment code -->
 
-	<meta charset="utf-8">
-	<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<title>Milestone</title>	
-	
-	<link href="/css/bootstrap.css" rel="stylesheet">
-	<link href="/css/milestone.css" rel="stylesheet">
-    <link href="/css/datepicker3.css" rel="stylesheet">
-	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-	  <![endif]-->        
-	</head>
+          <meta charset="utf-8">
+          <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black">
+          <meta name="apple-mobile-web-app-capable" content="yes">
+          <title>Milestone</title>
 
-    <body>	
-        <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
-          <h1 class="title">
-            <span class="btn-left" id="btn-menu"><span class="glyphicon glyphicon-th-list"></span></span>
-            Timeline
-            {{#unless test}}
-            <span class="btn-right" id="btn-add"><span class="glyphicon glyphicon-plus"></span></span>
-            {{/unless}}
-        </h1>
-    </nav>
-    <div id="goal-name-hack">{{goalname}}</div>
-    <div id="test-hack">{{test}}</div>
+          <link href="/css/bootstrap.css" rel="stylesheet">
+          <link href="/css/milestone.css" rel="stylesheet">
+          <link href="/css/datepicker3.css" rel="stylesheet">
+          <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+          <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+          <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+          <![endif]-->
+        </head>
 
-    <div class="container help-wrapper">
-        <h1 class="help">It looks like you don't have any goals! Press <span class="glyphicon glyphicon-th-list"></span> to go to the menu and add a new goal.</h1>
-    </div>
-    <div class="goal-header">
-        <!-- <div class="container goal-wrapper">
-        <h3>Goal Name</h3>
-        <p class="goal-info">
+        <body>
+          <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
+            <h1 class="title">
+              <span class="btn-left" id="btn-menu"><span class="glyphicon glyphicon-th-list"></span></span>
+              Timeline
+              {{#unless test}}
+              <span class="btn-right" id="btn-add"><span class="glyphicon glyphicon-plus"></span></span>
+              {{/unless}}
+            </h1>
+          </nav>
+          <div id="goal-name-hack">{{goalname}}</div>
+          <div id="test-hack">{{test}}</div>
+
+          <div class="container help-wrapper">
+            <h1 class="help">It looks like you don't have any goals! Press <span class="glyphicon glyphicon-th-list"></span> to go to the menu and add a new goal.</h1>
+          </div>
+          <div class="goal-header">
+            <!-- <div class="container goal-wrapper">
+            <h3>Goal Name</h3>
+            <p class="goal-info">
             <span class="complete-by">Finish by February 20</span><br />
             <span class="num-milestones">4 of 5 milestones completed</span>
             <div class="meter">
-                <span style="width: 80%"></span>
-            </div>
+            <span style="width: 80%"></span>
+          </div>
         </p>
         <a href="#" class="complete-all"><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Complete all milestones</a>
         <a href="#" class="edit-goal"><span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit Goal</a>
-    </div> -->  
-</div>
-
-
-<div class="container timeline-wrapper">
-
-    <!--initial state-->
-    <div class="event add-event status1">
-        <p class="add-event-description">Add New Milestone</p>
+      </div> -->
     </div>
 
-</div>
+
+    <div class="container timeline-wrapper">
+
+      <!--initial state-->
+      <div class="event add-event status1">
+        <p class="add-event-description">Add New Milestone</p>
+      </div>
+      <div class = "event event-incomplete of-goal">
+        <p class="event-complete-time">Never</p><br/>
+        <p class="event-description"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;Merp</p>
+      </div>
 
 
-</div>
+    </div>
 
-<script src="/js/jquery-1.11.0.js"></script>
-<script src="/js/bootstrap.js"></script>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script src="/js/jquery-1.11.0.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-48539607-2', 'milestone-app-b4.herokuapp.com');
-  ga('send', 'pageview');
+    ga('create', 'UA-48539607-2', 'milestone-app-b4.herokuapp.com');
+    ga('send', 'pageview');
 
-</script>
-<script src = "/js/login-listen.js"></script>
-<script src ="/js/bootstrap-datepicker.js"></script>
+    </script>
+    <script src = "/js/login-listen.js"></script>
+    <script src ="/js/bootstrap-datepicker.js"></script>
 
-</body>
-</html>
+  </body>
+  </html>
