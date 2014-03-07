@@ -543,10 +543,16 @@ function getMilestones(){
 	});
 }
 
-function deleteMilestone(thing){
-	var curr = $(thing);
-	var parent = curr.parent().parent();
+function setUpDeletersAndEditors(){
 
+	$('.delete-event').click(deleteMilestone);
+	$('.edit-event').click(editMielstone);
+
+	function deleteMilestone(thing){
+		var curr = $(thing);
+		var parent = curr.parent().parent();
+
+	}
 }
 
 
@@ -652,7 +658,6 @@ function setUpAdders(){
 			//alert(endTime-startTime);
 			window.location.href = "/";
 		});
-		
 	}
 
 	function goForward(e){
