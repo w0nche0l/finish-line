@@ -114,7 +114,7 @@ function gotEvents(result){
 	$('#btn-add').remove();
 	if(result[0] == undefined || result[0].goals.length ==0){
 		$('.goal-header').remove();	
-		$('.add-event').remove();
+		$('.status1').remove();
 		console.log('nothing to show');
 		return;
 	}
@@ -125,6 +125,12 @@ function gotEvents(result){
 	var goals = result[0]['goals'];
 
 	console.log(goals);
+
+	var colors = getColors(goals.length);
+	for(var i = 0; i < goals; ++ i){
+		goals[i].color = colors[i];
+	}
+
 	var milestones = new Array();
 	
 	var goalname = $('#goal-name-hack').html();
@@ -182,8 +188,6 @@ function gotEvents(result){
 			i++;
 			
 		}
-
-
 
 		var string = '<h2 class="date">'+ date.toDateString() + ' </h2>'
 		for(var j = 0; j < dayMilestones.length; ++j){
@@ -314,6 +318,13 @@ function gotEvents(result){
 
 function dateComp(a,b){
 	return new Date(a.actualDate)-new Date(b.actualDate);
+}
+
+function getColors(size){
+	var colors = new Array();
+	for(var i = 0; i < size; ++i){
+		colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
+	}
 }
 
 function countGoals(results, goalnum){

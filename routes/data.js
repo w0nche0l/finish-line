@@ -150,7 +150,8 @@ exports.deleteMilestone = function(req,res){
 		for(var i = 0; i < user.goals.length; ++i){
 			if(user.goals[i].name == goalname){
 				for(var j = 0; j < user.goals[i].milestones.length; ++j){
-					if(user.goals[i].milestones[j].name == milestonename && user.goals[i].milestones[j].date == milestonedate){
+					if(user.goals[i].milestones[j].name == milestonename 
+						&& user.goals[i].milestones[j].date == milestonedate){
 						user.goals[i].milestones[j].remove();
 						break;
 					}
@@ -165,6 +166,8 @@ exports.editMilestone = function(req,res){
 	console.log('trying to delete');
 	var milestonename = req.param('milestoneoldname');
 	var milestonedate = req.param('milestoneolddate');
+	var milestoneNewName = req.param('milestonenewname');
+	var milestoneNewDate = req.param('milestonenewdate');
 	var goalname = req.param('goalname');
 
 	models.User.find({"username": req.cookies.user}, afterQuery);
@@ -173,8 +176,10 @@ exports.editMilestone = function(req,res){
 		for(var i = 0; i < user.goals.length; ++i){
 			if(user.goals[i].name == goalname){
 				for(var j = 0; j < user.goals[i].milestones.length; ++j){
-					if(user.goals[i].milestones[j].name == milestonename){
-						user.goals[i].milestones[j].remove();
+					if(user.goals[i].milestones[j].name == milestonename 
+						&& user.goals[i].milestones[j].date == milestonedate){
+						user.goals[i].milestones[j].name = milestoneNewName;
+						user.goals[i].milestones[j].date = milestoneNewDate;
 						break;
 					}
 				}
