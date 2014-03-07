@@ -141,6 +141,30 @@ exports.deleteGoal = function(req,res){
 exports.deleteMilestone = function(req,res){
 	console.log('trying to delete');
 	var milestonename = req.param('milestonename');
+	var milestonedate = req.param('milestonedate');
+	var goalname = req.param('goalname');
+
+	models.User.find({"username": req.cookies.user}, afterQuery);
+	function afterQuery(err, projects) {
+		var user = projects[0];
+		for(var i = 0; i < user.goals.length; ++i){
+			if(user.goals[i].name == goalname){
+				for(var j = 0; j < user.goals[i].milestones.length; ++j){
+					if(user.goals[i].milestones[j].name == milestonename && user.goals[i].milestones[j].date == milestonedate){
+						user.goals[i].milestones[j].remove();
+						break;
+					}
+				}
+			}
+		}
+		user.save();
+  	};
+};
+
+exports.editMilestone = function(req,res){
+	console.log('trying to delete');
+	var milestonename = req.param('milestoneoldname');
+	var milestonedate = req.param('milestoneolddate');
 	var goalname = req.param('goalname');
 
 	models.User.find({"username": req.cookies.user}, afterQuery);
@@ -158,7 +182,8 @@ exports.deleteMilestone = function(req,res){
 		}
 		user.save();
   	};
-};
+}
+
 
 function logError(err){
 	if(err){
