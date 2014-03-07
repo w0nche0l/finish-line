@@ -116,18 +116,58 @@ exports.addMilestone = function(req, res,callback) {
 exports.deleteGoal = function(req,res){
 	console.log('trying to delete');
 	//var project = models.User.find({"username":req.cookies.user, goals : {$elemMatch: {_id: ObjectId(req.id)}}).remove().exec(afterQuery);
-	models.User.find({"username": req.cookies.user, 'goals._id': req.param('goalid')}).remove().exec(afterQuery);
-	models.User.update({"username": req.cookies.user, "goals._id": req.param('goalid')}, 
-		{$pull : { goals : {"_id": ObjectId(req.param('goalid'))} } });
-	console.log('done');
+	models.User.find({"username": req.cookies.user}, afterQuery);
+	// models.User.update({"username": req.cookies.user, "goals._id": req.param('goalid')}, 
+	// 	{$pull : { goals : {"_id": ObjectId()} } });
 	//models.User.update({$pull : { r : {"_id": ObjectId(req.id)} } }, false, afterQuery);
 	function afterQuery(err, projects) {
+		req.param('goalid')
 		console.log(projects);
+		project[0].goals.id(req.param('goalid')).remove();
+		project[0].save(function(err){
+			if(err){
+				console.log(err);
+				res.send(null, 500);
+			}
+			else{
+				console.log('sucess');
+				res.send(projects, 200);
+			}
+		});		
     	if(err) console.log(err);
-    	res.send(projects, 200);
   	};
 };
- 
+
+exports.deleteMilestone = function(req,res){
+	console.log('trying to delete');
+	var milestonename = req.param('milestonename');
+	var goalname = req.param('goalname');
+
+	models.User.find({"username": req.cookies.user}, afterQuery);
+	function afterQuery(err, projects) {
+		var user = projects[0];
+		for(var i = 0; i < user.goals.length; ++i){
+			if(user.goals[i].name == goalname){
+				for(var j = 0; j < user.goals[i].milestones.length){
+					if(user.goals[i].milestones[j].name == milestonename){
+						user.goals[i].milestones[j].remove();
+						break;
+					}
+				}
+			}
+		}
+		user.save()
+  	};
+};
+
+function logError(err){
+	if(err){
+		console.log(err);
+		res.send(null, 400);
+	}
+	else
+		res.send(null,200);
+};
 
 exports.toggleMilestone = function(req,res){
 	console.log('trying to toggle');
@@ -160,14 +200,7 @@ exports.toggleMilestone = function(req,res){
 			}
 		}
 
-		user.save(function(err){
-			if(err){
-				console.log(err);
-				res.send(null, 400);
-			}
-			else
-				res.send(null,200);
-		})
+		user.save(logError);
 
 	});
 
