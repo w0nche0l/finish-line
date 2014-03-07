@@ -146,7 +146,7 @@ body {
 	color: rgba(255, 255, 255, 0.7);
 }
 
-.event .milestone-progress {
+.event .milestone-actions {
 	position: relative;
 	padding: 6pt 6pt 6pt 8pt;
 	font-size: 10pt;
