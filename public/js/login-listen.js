@@ -543,6 +543,13 @@ function getMilestones(){
 	});
 }
 
+function deleteMilestone(thing){
+	var curr = $(thing);
+	var parent = curr.parent().parent();
+
+}
+
+
 function setUpAdders(){
 	
 	$('.add-event').click(goForward);
@@ -642,7 +649,7 @@ function setUpAdders(){
 				"type": 'addmilestone2',		
 				"val" : endTime-startTime
 			});
-			alert(endTime-startTime);
+			//alert(endTime-startTime);
 			window.location.href = "/";
 		});
 		
