@@ -55,6 +55,13 @@ body {
 	font-family: "Glyphicons Halflings" !important;
 }
 
+.btn-text {
+	font-family: "Lato", "Helvetica Neue", "Helvetica", "Arial", sans-serif !important;
+	margin-top: 2pt;
+	font-size: 14pt;
+	color: #c8ff87;
+}
+
 .btn-left-mini {
 	padding-left: 8pt;
 	float: left;

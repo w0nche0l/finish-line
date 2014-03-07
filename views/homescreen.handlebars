@@ -40,11 +40,8 @@
           <h1 class="title">
             <span class="btn-left" id="btn-menu"><span class="glyphicon glyphicon-th-list"></span></span>
             Timeline
+            <span class="btn-right btn-text" id="btn-menu">Edit</span>
         </h1>
-    </nav>
-    <div id="goal-name-hack">{{goalname}}</div>
-    <div id="test-hack">{{test}}</div>
-            </h1>
           </nav>
           <div id="goal-name-hack">{{goalname}}</div>
           <div id="test-hack">{{test}}</div>
@@ -78,6 +75,18 @@
         <p class="event-complete-time">Never</p><br/>
         <p class="event-description"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;Merp</p>
       </div>
+
+<div class = "event add-event event-incomplete of-goal event-editable">
+<p class="add-event-header">
+        <span class="btn-left-mini"><span class="glyphicon glyphicon-arrow-left"></span></span>
+        Edit Milestone
+        <span class="btn-right-mini"><span class="glyphicon glyphicon-ok"></span></span>
+      </p>
+    <div class="form-group">
+        <input type="text" class="form-control" id="name" placeholder="Milestone description" name="name">
+        <input type="text" class="form-control datepicker" id="date" placeholder="Due date" name="password">
+    </div>
+</div>
 
 
     </div>
