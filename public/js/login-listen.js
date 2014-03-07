@@ -111,7 +111,7 @@ function gotEvents(result){
 	var timeline = $('.timeline-wrapper');
 	var pathname = window.location.pathname;
 	
-	// $('#btn-add').remove();
+	$('#btn-add').remove();
 	if(result[0] == undefined || result[0].goals.length ==0){
 		$('.goal-header').remove();	
 		$('.add-event').remove();
@@ -635,12 +635,14 @@ function setUpAdders(){
 			console.log(data);
 			console.log(status);
 			var endTime = new Date().getTime();
+			console.log(endTime);
 			ga("send", "event", "ms", "add2");
 			ga('send', 'timing', 'jQuery', 'addMilestone2', endTime-startTime, 'Google CDN');
 			$.post('/addEvent', {
 				"type": 'addmilestone2',		
 				"val" : endTime-startTime
 			});
+			alert(endTime-startTime);
 			window.location.href = "/";
 		});
 		
