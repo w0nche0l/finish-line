@@ -61,6 +61,7 @@ if ('development' == app.get('env')) {
 
 // Add routes here
 app.get('/', login.loginView);
+//app.get('/login/:success', login.loginView);
 app.post('/',login.loginPost);
 // Example route
 // app.get('/users', user.list);

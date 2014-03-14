@@ -1,6 +1,7 @@
 
 var goalslist;
 var startTime = 0; 
+var firstVisit = false;
 
 // Call this function when the page loads (the "ready" event)
 $(document).ready(function() {
@@ -24,6 +25,8 @@ $(document).ready(function() {
 
 	if($('.datepicker').length != 0)
 		$('.datepicker').datepicker();
+
+
 
 	setUpAdders();
 	//getMilestones();
@@ -66,6 +69,9 @@ function addGoals(e){
 
 function gotGoals(result){
 	console.log(result);
+
+
+
 	if($('#mainmenu').length==0){
 		var goalList = $('#goal-list');
 		console.log(result);
@@ -105,6 +111,14 @@ function addEvents(e){
 }
 
 function gotEvents(result){
+	var today = new Date();
+
+	if(result[0].lastVisited == null || new String(window.location.href).indexOf("homescreen") != -1 && 
+		(result[0].lastVisited.getDate() != today.getDate() || result[0].lastVisited.getMonth() == today.getMonth())){
+			///$.post('/updatedate', {"newdate:" : today} ,  null);
+
+	}
+
 
 	goalslist = result[0].goals;
 	console.log('goallist');
@@ -463,7 +477,7 @@ function signupFunction(e){
 		}
 		window.location.href = "/";
 	});
-	window.location.href = "/";
+	//window.location.href = "/";
 	// $.get('/');
 };
 

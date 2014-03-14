@@ -1,12 +1,13 @@
-// Get all of our fake login data
 var AM = require('../modules/account-manager');
 var login = require('../login.json');
 
 exports.loginView = function(req, res){
 	console.log(req.cookies);
+
 	// check if the user's credentials are saved in a cookie //
 	if (req.cookies.user == undefined || req.cookies.pass == undefined){
 		console.log('login no credentials');
+		//if(req.param());
 		res.render('login', { title: 'Hello - Please Login To Your Account' });
 	}	else{
 // attempt automatic login //
@@ -16,6 +17,8 @@ exports.loginView = function(req, res){
 			    req.session.user = o;
 				res.redirect('/homescreen');
 			}	else{
+				//if(req)
+
 				res.render('login', { title: 'Hello - Please Login To Your Account' });
 			}
 		});
