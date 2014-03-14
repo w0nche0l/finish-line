@@ -21,9 +21,9 @@ $(document).ready(function() {
 	addEvents($('.timeline-wrapper'));
 	addMilestones($('.milestone-list'));
 	addGoals($('#goal-list'));
-	$('.datepicker').datepicker();
 
-	alert(window.location);
+	if($('.datepicker').length != 0)
+		$('.datepicker').datepicker();
 
 	setUpAdders();
 	//getMilestones();
@@ -711,7 +711,7 @@ function setUpAdders(){
 				"val" : endTime-startTime
 			});
 			//alert(endTime-startTime);
-			window.location.href = "/";
+			window.location.href = window.location;
 		});
 	}
 
