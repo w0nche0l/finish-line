@@ -124,7 +124,7 @@ function gotEvents(result){
 	console.log('goallist');
 	console.log(goalslist);
 
-	var timeline = $('.timeline-wrapper');
+	
 	var pathname = window.location.pathname;
 	
 	$('#btn-add').remove();
@@ -189,61 +189,75 @@ function gotEvents(result){
 	milestones.sort(dateComp);
 
 	console.log(milestones);
-	for(var i = 0; i < milestones.length ; ){
-		var date = milestones[i].actualDate;
-		if(isNaN(date.getTime())){
-			i++;
-			continue;
-		}
 
+	var timeline = $('.timeline-wrapper');
 
-
-		var dayMilestones = new Array();
-		console.log(date);
-
-		while(i < milestones.length && milestones[i].actualDate.getTime() == date.getTime()){
-			dayMilestones.push(milestones[i]);
-			i++;
-			
-		}
-
-		var string = '<h2 class="date">'+ date.toDateString() + ' </h2>'
-		for(var j = 0; j < dayMilestones.length; ++j){
-			if(dayMilestones[j].actualDate > Date.now()){//future
-				if(dayMilestones[j].completed){
-					string+= '<div class = "event event-future">';
-					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
-				}
-				else{
-					string+= '<div class = "event event-incomplete event-future">';
-					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
-				}
+	for(var tl = 0; tl < timeline.length; ++tl){
+		for(var i = 0; i < milestones.length ; ){
+			var date = milestones[i].actualDate;
+			if(isNaN(date.getTime())){
+				i++;
+				continue;
 			}
-			else{//past
-				if(dayMilestones[j].completed){
-					string+= '<div class = "event event-past">';
-					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
-				}
-				else{
-					string+= '<div class = "event event-overdue event-past">';
-					string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';	
-				}
+
+
+
+			var dayMilestones = new Array();
+			console.log(date);
+
+			var allcomplete = true;
+			while(i < milestones.length && milestones[i].actualDate.getTime() == date.getTime()){
+				dayMilestones.push(milestones[i]);
+				if(!milestones[i].completed)
+					allcomplete = false;
+				i++;
 			}
-			string+=
-                 '<p class="milestone-actions"><span class="milestone-delete">Delete</span>' +
-                 '&nbsp;&nbsp;&nbsp;&nbsp;<span class="milestone-edit-omg">'+
-                 //Edit+
-                 '</span></p><br/>' +
-    			'<p class="event-description" id = "' +  dayMilestones[j]._id;
-			if(dayMilestones[j].completed)
-				string +='"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;';
-			else
-				string +='"><span class="glyphicon glyphicon-unchecked"></span>&nbsp;&nbsp;';
-    		string += dayMilestones[j].name + '</p>' +
-    			'</div>';
+
+
+			//if past and not all complete
+			if((date <= Date.now() && !allcomplete) || !($(timeline[tl]).hasClass("modal-timeline"))){
+				var string = '<h2 class="date">'+ date.toDateString() + ' </h2>';
+				for(var j = 0; j < dayMilestones.length; ++j){
+					if(dayMilestones[j].actualDate > Date.now()){//future
+						if(dayMilestones[j].completed){
+							string+= '<div class = "event event-future">';
+							string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+						}
+						else{
+							string+= '<div class = "event event-incomplete event-future">';
+							string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+						}
+					}
+					else{//past
+						if(dayMilestones[j].completed && !($(timeline[tl]).hasClass("modal-timeline"))){
+							string+= '<div class = "event event-past">';
+							string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';
+						}
+						else{
+							string+= '<div class = "event event-overdue event-past">';
+							string+= '<p class="event-complete-time">' + goals[dayMilestones[j].goalNum].name + '</p>';	
+						}
+					}
+					if(!($(timeline[tl]).hasClass("modal-timeline")) || !dayMilestones[j].completed){
+					string+=
+		                '<p class="milestone-actions"><span class="milestone-delete">Delete</span>' +
+		                '&nbsp;&nbsp;&nbsp;&nbsp;<span class="milestone-edit-omg">'+
+		                //Edit+
+		                '</span></p><br/>' +
+		    			'<p class="event-description" id = "' +  dayMilestones[j]._id;
+					if(dayMilestones[j].completed)
+						string +='"><span class="glyphicon glyphicon-check"></span>&nbsp;&nbsp;';
+					else
+						string +='"><span class="glyphicon glyphicon-unchecked"></span>&nbsp;&nbsp;';
+		    		string += dayMilestones[j].name + '</p>' +
+		    			'</div>';
+		    		}
+				}
+				string = '<div class = "day">' + string  + '</div>';
+				$(timeline[tl]).append(string);
+			}
+
 		}
-		string = '<div class = "day">' + string  + '</div>';
-   		timeline.append(string);
 	}
 	console.log('styling goaldivs');
 	var goalDivs = $('p.event-complete-time');
@@ -347,6 +361,10 @@ function gotEvents(result){
 
 	console.log(milestones);
 	setUpDeletersAndEditors();
+	if(!$.trim($('.modal-timeline').html()).length){
+		$('.modal-title').text("You're on track!");
+		$('.modal-body').empty();
+	}
 }
 
 function dateComp(a,b){
