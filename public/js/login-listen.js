@@ -23,6 +23,8 @@ $(document).ready(function() {
 	addGoals($('#goal-list'));
 	$('.datepicker').datepicker();
 
+	alert(window.location);
+
 	setUpAdders();
 	//getMilestones();
 })
@@ -309,9 +311,6 @@ function gotEvents(result){
 			if(parentDiv.hasClass('event-incomplete'))
 				parentDiv.toggleClass('event-incomplete');
 		}
-
-
-		
 
 		console.log("switching from " + milestonestatus + " to " + !milestonestatus);
 
@@ -601,6 +600,13 @@ function setUpDeletersAndEditors(){
 	function editMilestone(e){
 		e.preventDefault();
 		
+		var date = $(this).parent().parent().parent().find('.date').text();
+		var name = $(this).parent().parent().find('.event-description').text();
+		var goal = $(this).parent().parent().find('.event-complete-time').text();
+
+		console.log('starting to edit' + name  + "  " + data );
+
+
 	}
 }
 
@@ -610,7 +616,7 @@ function setUpAdders(){
 	$('.add-event').click(goForward);
 
 	function fillWithEvent1(e){
-		var parent = $(e);
+		var parent = $(e);	
 		parent.toggleClass("status1");
 		parent.toggleClass("status2");
 		parent.html('<p class="add-event-description">Add New Milestone</p>');
@@ -668,7 +674,7 @@ function setUpAdders(){
         	'</p>'+
         '<div class="form-group">'+
             '<input type="text" class="form-control" id="name" placeholder="Milestone description" name="name">'+
-            '<input type="text" class="form-control datepicker" id="date" placeholder="Due date" name="password">'+
+            '<input type="text" class="form-control datepicker" readonly="true" id="date" placeholder="Due date" name="password">'+
         '</div>';
 
         console.log(div.html());

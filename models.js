@@ -25,7 +25,8 @@ var UserSchema = new Mongoose.Schema({
   "firstname":String, 
   "username":String,
   "email":String,
-  "goals":[GoalSchema]
+  "goals":[GoalSchema],
+  "lastVisited":Date
 });
 
 var EventSchema  = new Mongoose.Schema({
